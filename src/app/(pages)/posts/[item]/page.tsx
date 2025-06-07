@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 
 import { Tools } from '@/app/_components/home/tools';
 import { queryPostItem } from '@/app/actions/post';
+import { formatChineseTime } from '@/libs/time';
 
 import $styles from './page.module.css';
 
@@ -31,7 +32,11 @@ const PostItemPage: FC<{ params: Promise<{ item: string }> }> = async ({ params 
               <span>
                 <Calendar />
               </span>
-              <time className="tw-ellips">2024年8月10日</time>
+              <time className="tw-ellips">
+                {!isNil(post.updatedAt)
+                  ? formatChineseTime(post.updatedAt)
+                  : formatChineseTime(post.createdAt)}
+              </time>
             </div>
           </div>
           <div className={$styles.body}>{post.body}</div>

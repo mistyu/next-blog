@@ -6,6 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
+import { formatChineseTime } from '@/libs/time';
+
 import type { IPaginateQueryProps } from '../_components/paginate/types';
 
 import { Tools } from '../_components/home/tools';
@@ -57,8 +59,13 @@ const HomePage: FC<{ searchParams: Promise<IPaginateQueryProps> }> = async ({ se
                   <span>
                     <Calendar />
                   </span>
-                  <time className="tw-ellips">2024年8月10日</time>
+                  <time className="tw-ellips">
+                    {!isNil(item.updatedAt)
+                      ? formatChineseTime(item.updatedAt)
+                      : formatChineseTime(item.createdAt)}
+                  </time>
                 </div>
+                ;
                 <PostActionButtons id={item.id} />
               </div>
             </div>
