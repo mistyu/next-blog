@@ -1,0 +1,13 @@
+.item {
+  @apply tw-flex tw-flex-auto tw-flex-col tw-space-y-6  tw-bg-white/90  tw-min-w-full lg:tw-min-w-[60%] !tw-max-w-full tw-px-5 tw-py-3 tw-rounded-md;
+}
+
+.actions {
+  @apply tw-flex tw-justify-between;
+}
+
+html[class='dark'] {
+  .item {
+    @apply tw-bg-black/80;
+  }
+}

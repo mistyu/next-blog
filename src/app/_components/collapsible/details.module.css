@@ -1,0 +1,7 @@
+.details {
+  @apply tw-border tw-p-2 tw-overflow-hidden;
+
+  & > .content {
+    @apply tw-overflow-hidden tw-px-2 tw-py-3;
+  }
+}

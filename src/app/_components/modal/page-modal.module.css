@@ -1,0 +1,3 @@
+.modalContent {
+  @apply tw-overflow-y-auto tw-max-h-[80vh] tw-px-3;
+}
