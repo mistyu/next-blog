@@ -23,7 +23,7 @@
     "dbs": "prisma db seed",
     "dbmd": "cross-env NODE_ENV=production prisma migrate deploy",
     "dbo": "prisma studio",
-    "postinstall": "pnpm run dbm && pnpm run dbs && pnpm run dbg"
+    "postinstall": "pnpm run dbm && pnpm run dbg"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.22.1",

@@ -5,7 +5,7 @@ async function seed() {
   try {
     await createPostData();
   } catch (e) {
-    console.error(e);
+    console.error(e, 'seed error');
     process.exit(1);
   }
   await prisma.$disconnect();

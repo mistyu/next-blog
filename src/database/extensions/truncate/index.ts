@@ -22,7 +22,7 @@ export function truncateExt<T extends ConnectorType>(connector: T, config?: Root
             const ctx = Prisma.getExtensionContext(this);
             const execConfig = { ...rootConfig, ...localConfig };
             const tableName = (client as any)._runtimeDataModel.models[ctx.$name!].dbName;
-            await extension(client as Prisma.DefaultPrismaClient, tableName, execConfig);
+            await extension(client as any, tableName, execConfig);
           },
         },
       },
