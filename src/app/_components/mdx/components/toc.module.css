@@ -1,0 +1,101 @@
+.toc-container {
+  @apply tw-grid tw-border-l-2 tw-border-slate-200/60 dark:tw-border-slate-700/60;
+  grid-template-rows: auto 1fr;
+}
+
+.toc-container.close {
+  @apply tw-grid;
+  grid-template-rows: auto 0fr;
+}
+
+.toc-title {
+  @apply tw-cursor-pointer tw-select-none;
+}
+
+.toc-list {
+  @apply tw-max-w-fit tw-overflow-hidden tw-text-base tw-relative;
+}
+
+/* 滑动指示器 */
+.indicator {
+  @apply tw-absolute tw-left-3 tw-w-0.5 tw-bg-blue-500;
+  height: 1rem; /* 减小边框长度 */
+
+  @apply tw-transition-transform tw-duration-300;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* 使用更稳定的缓动函数 */
+}
+
+.toc-list li {
+  @apply tw-relative tw-py-0.5 tw-ml-0; /* 减小垂直内边距 */
+}
+
+.toc-list li[data-active='true']::before {
+  content: '';
+
+  @apply tw-absolute tw-left-3 tw-h-4 tw-w-0.5 tw-bg-amber-500 dark:tw-bg-amber-400;
+  @apply tw-top-1/2 -tw-translate-y-1/2;
+}
+
+/* 激活项的样式 */
+.toc-list li[data-active='true'] a {
+  @apply tw-text-amber-500 dark:tw-text-amber-400 tw-font-medium;
+}
+
+/* 链接基本样式 */
+.toc-list a {
+  @apply tw-block tw-w-full tw-px-4 tw-text-sm;
+  @apply tw-text-slate-600 dark:tw-text-slate-400;
+  @apply hover:tw-text-slate-900 dark:hover:tw-text-slate-200;
+  @apply tw-transition-colors tw-duration-200;
+}
+
+/* 内容缩进 */
+.toc-list li a div {
+  @apply tw-transition-transform tw-duration-200;
+}
+
+.toc-list li.h1indent a div,
+.toc-list li.h2indent a div {
+  @apply tw-pl-4;
+}
+
+.toc-list li.h3indent a div {
+  @apply tw-pl-8;
+}
+
+.toc-list li.h4indent a div {
+  @apply tw-pl-12;
+}
+
+.toc-list li.h5indent a div {
+  @apply tw-pl-16;
+}
+
+.toc-list li.h6indent a div {
+  @apply tw-pl-20;
+}
+
+.toc-list li.tight {
+  @apply tw-my-[0.05rem];
+}
+
+/* first and last li when mobile */
+.toc-list li:first-child {
+  @apply tw-pt-[0.6rem];
+}
+
+.toc-list li:last-child {
+  @apply tw-pb-[0.6rem];
+}
+
+.toc-list span.numbering {
+  @apply tw-mr-2 tw-text-[var(--primary)];
+}
+
+.toc-list span.href {
+  @apply tw-hidden;
+}
+
+.toc-list a:hover span.href {
+  @apply tw-inline-block tw-ml-4 tw-text-[80%] tw-text-gray-500;
+}

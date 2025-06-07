@@ -1,19 +1,8 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import type { FC } from 'react';
 
-import Avatar from './avatar.jpg';
+import { cn } from '../shadcn/utils';
 import $styles from './logo.module.css';
 
-export const HeaderLogo = () => (
-  <Link href="/" className={$styles.link}>
-    <Image
-      src={Avatar}
-      alt="avatar logo"
-      sizes="100vw"
-      style={{
-        width: '100%',
-        height: 'auto',
-      }}
-    />
-  </Link>
-);
+export const HeaderLogo: FC = () => {
+  return <div className={cn($styles.logo)}>yiyue</div>;
+};

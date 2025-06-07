@@ -1,14 +1,7 @@
-.link {
-  @apply tw-w-20 tw-h-20 tw-block  tw-rounded-full  tw-shadow-nymd tw-p-1 tw-bg-white;
-  transition-duration: 300ms;
-  animation: breathe-light 4s ease-in-out infinite;
+.logo {
+  @apply tw-flex tw-flex-none tw-items-center tw-max-w-28;
+}
 
-  &:hover {
-    @apply tw-shadow-nylg tw-shadow-amber-400;
-    transform: scale(1.2) rotate(360deg);
-  }
-
-  & > img {
-    @apply tw-rounded-full;
-  }
+.logo > a {
+  @apply tw-block tw-w-auto tw-h-auto;
 }

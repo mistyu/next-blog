@@ -1,0 +1,11 @@
+.container {
+  @apply tw-w-full tw-flex tw-gap-8;
+
+  & > .article {
+    @apply tw-flex-1 tw-min-w-0 tw-overflow-hidden;
+  }
+
+  & > .toc {
+    @apply tw-w-56 tw-flex-shrink-0 tw-sticky tw-top-16 tw-self-start;
+  }
+}

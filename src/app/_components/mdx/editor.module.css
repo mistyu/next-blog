@@ -1,0 +1,20 @@
+.container {
+  @apply tw-flex tw-flex-auto tw-w-full;
+
+  & > :global(.wmde-markdown-var.w-md-editor) {
+    @apply tw-flex-auto tw-w-full;
+  }
+
+  & :global(.wmde-markdown-var:has(.w-md-editor-text-input:disabled)) {
+    @apply tw-pointer-events-none tw-cursor-not-allowed;
+
+    &::before {
+      @apply tw-content-[''] tw-absolute tw-inset-0 tw-z-[99] tw-pointer-events-none tw-rounded-[3px] tw-bg-zinc-300/50 dark:tw-bg-zinc-900/50 tw-backdrop-blur-[2px];
+    }
+
+    & > :global(.w-md-editor-content > .w-md-editor-area),
+    & > :global(.w-md-editor-content > .w-md-editor-preview) {
+      @apply tw-overflow-hidden;
+    }
+  }
+}

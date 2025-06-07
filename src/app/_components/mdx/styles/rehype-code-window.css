@@ -1,0 +1,54 @@
+.mdx-preview {
+  .code-window {
+    @apply tw-my-4 tw-rounded-sm  tw-overflow-hidden tw-border tw-border-neutral-700;
+
+    & pre {
+      @apply tw-m-0;
+    }
+
+    & code {
+      @apply tw-bg-transparent;
+    }
+  }
+
+  .code-header {
+    @apply tw-list-none tw-flex tw-justify-between tw-items-center tw-px-2 tw-pt-1 tw-pb-2 tw-bg-[color:hsl(220deg_13%_18%)];
+  }
+
+  .window-controls {
+    @apply tw-flex tw-gap-1 tw-items-center;
+  }
+
+  .window-controls .control {
+    @apply tw-w-[0.625rem] tw-h-[0.625rem] tw-rounded-full;
+  }
+
+  .control.close {
+    @apply tw-bg-red-500 hover:tw-bg-red-600;
+  }
+
+  .control.minimize {
+    @apply tw-bg-yellow-500 hover:tw-bg-yellow-600;
+  }
+
+  .control.maximize {
+    @apply tw-bg-green-500 hover:tw-bg-green-600;
+  }
+
+  .code-tools {
+    @apply tw-flex tw-gap-2;
+  }
+
+  .code-lang,
+  .code-copy {
+    @apply tw-text-xs tw-text-neutral-400 tw-flex tw-items-center tw-font-semibold;
+  }
+
+  .code-lang {
+    @apply tw-ml-auto tw-mx-2;
+  }
+
+  .code-content {
+    @apply tw-h-auto;
+  }
+}

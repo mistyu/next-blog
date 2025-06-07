@@ -59,7 +59,7 @@
     },
     "[mdx]": {
         "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "unifiedjs.vscode-mdx"
     },
     "[markdown]": {
         "editor.formatOnSave": true,

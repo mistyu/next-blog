@@ -1,3 +1,15 @@
 .header {
-  @apply tw-flex tw-items-center tw-pt-6 tw-max-h-24 tw-flex-auto tw-flex-col tw-mb-3;
+  @apply tw-fixed tw-top-0 tw-w-full tw-z-40  tw-mt-0 tw-bg-white/40 dark:tw-bg-zinc-900/10 tw-transition-[background-color] tw-ease-in-out tw-duration-300;
+}
+
+.header-scrolled {
+  @apply tw-border-b tw-border-gray-200/40 dark:tw-border-gray-800/40  tw-shadow-md tw-bg-white/80 dark:tw-bg-zinc-900/50 tw-backdrop-blur-md;
+}
+
+.header > .container {
+  @apply tw-flex tw-h-14 tw-w-full tw-justify-between tw-flex-row tw-mb-0 tw-transition-[height] tw-ease-in-out tw-duration-300;
+}
+
+.header-scrolled > .container {
+  @apply tw-h-16;
 }

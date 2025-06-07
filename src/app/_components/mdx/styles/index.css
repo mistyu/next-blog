@@ -1,0 +1,78 @@
+@import './rehype-prism.css';
+@import './rehype-code-window.css';
+
+.mdx-preview {
+  /* 链接样式 */
+  a {
+    @apply tw-text-blue-800/70 hover:tw-text-blue-700/80 dark:tw-text-blue-300/70 dark:hover:tw-text-blue-200/80 tw-mx-0.5 tw-transition-colors tw-duration-200;
+  }
+
+  /* 内联代码样式 */
+  code:not([class*='language-']) {
+    @apply tw-bg-white/90 tw-text-amber-800/80 dark:tw-bg-black/80 dark:tw-text-lime-100/80 tw-px-1.5 tw-py-0.5 tw-px-2 tw-mx-2 tw-rounded-md tw-text-sm;
+  }
+
+  /* 引用块样式 */
+  blockquote {
+    @apply tw-pl-4 tw-my-4 tw-border-l-4 tw-border-slate-300/40 dark:tw-border-slate-700/40 tw-bg-zinc-50/50 dark:tw-bg-zinc-800/40 tw-py-2 tw-pr-4 tw-italic tw-text-slate-600 dark:tw-text-slate-300;
+  }
+
+  /* 标题样式优化 */
+  h1 {
+    @apply tw-text-3xl tw-font-bold tw-mb-6 tw-mt-8 tw-text-slate-800 dark:tw-text-slate-200;
+  }
+
+  h2 {
+    @apply tw-text-2xl tw-font-semibold tw-mb-4 tw-mt-6 tw-text-slate-700 dark:tw-text-slate-300;
+  }
+
+  h3 {
+    @apply tw-text-xl tw-font-medium tw-mb-3 tw-mt-4 tw-text-slate-600 dark:tw-text-slate-400;
+  }
+
+  h4 {
+    @apply tw-text-lg tw-font-medium tw-mb-2 tw-mt-3 tw-text-slate-600 dark:tw-text-slate-400;
+  }
+
+  h5 {
+    @apply tw-text-base tw-font-medium tw-mb-2 tw-mt-3 tw-text-slate-600 dark:tw-text-slate-400;
+  }
+
+  h6 {
+    @apply tw-text-sm tw-font-medium tw-mb-2 tw-mt-3 tw-text-slate-600 dark:tw-text-slate-400;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tw-scroll-mt-20;
+
+    & > a {
+      @apply after:tw-text-slate-700 dark:after:tw-text-slate-300;
+    }
+
+    &:hover {
+      & > a {
+        @apply after:tw-content-['#'];
+      }
+    }
+  }
+
+  /* 段落间距优化 */
+  p {
+    @apply tw-my-1 tw-text-slate-600 dark:tw-text-slate-300;
+  }
+
+  /* 列表样式优化 */
+  ul,
+  ol {
+    @apply tw-pl-6 tw-my-4;
+  }
+
+  li {
+    @apply tw-mb-2 tw-text-slate-600 dark:tw-text-slate-300;
+  }
+}

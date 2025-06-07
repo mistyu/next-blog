@@ -10,7 +10,6 @@ import { formatChineseTime } from '@/libs/time';
 
 import type { IPaginateQueryProps } from '../_components/paginate/types';
 
-import { Tools } from '../_components/home/tools';
 import { PostActionButtons } from '../_components/post/list';
 import { PostListPaginate } from '../_components/post/paginate';
 import { queryPostPaginate } from '../actions/post';
@@ -31,7 +30,6 @@ const HomePage: FC<{ searchParams: Promise<IPaginateQueryProps> }> = async ({ se
 
   return (
     <div className="tw-page-container">
-      <Tools />
       <div className={$styles.list}>
         {items.map((item) => (
           <div

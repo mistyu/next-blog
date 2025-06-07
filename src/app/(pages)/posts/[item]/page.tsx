@@ -5,7 +5,7 @@ import { Calendar } from 'lucide-react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-import { Tools } from '@/app/_components/home/tools';
+import { MdxRender } from '@/app/_components/mdx/render';
 import { queryPostItem } from '@/app/actions/post';
 import { formatChineseTime } from '@/libs/time';
 
@@ -17,7 +17,6 @@ const PostItemPage: FC<{ params: Promise<{ item: string }> }> = async ({ params 
   if (isNil(post)) return notFound();
   return (
     <div className="tw-page-container">
-      <Tools back />
       <div className={$styles.item}>
         <div className={$styles.thumb}>
           <Image src={post.thumb} alt={post.title} fill priority sizes="100%" unoptimized />
@@ -39,7 +38,9 @@ const PostItemPage: FC<{ params: Promise<{ item: string }> }> = async ({ params 
               </time>
             </div>
           </div>
-          <div className={$styles.body}>{post.body}</div>
+          <div className={$styles.body}>
+            <MdxRender source={post.body} />
+          </div>
         </div>
       </div>
     </div>

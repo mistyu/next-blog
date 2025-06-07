@@ -1,0 +1,23 @@
+.nav {
+  @apply tw-flex tw-flex-auto tw-items-center tw-ml-10;
+}
+
+.nav > .menus {
+  @apply tw-hidden md:tw-flex md:tw-flex-auto md:tw-max-w-full md:!tw-justify-start;
+}
+
+.nav > .menus .menu-item > a {
+  @apply tw-bg-transparent hover:tw-bg-transparent tw-duration-200 tw-inline-flex tw-py-0 tw-text-base;
+
+  &:hover {
+    @apply tw-font-bold;
+  }
+}
+
+.nav > .menus .menu-item:first-child > a {
+  @apply tw-pl-0;
+}
+
+.nav > .menus > a {
+  @apply tw-text-gray-700 hover:tw-text-gray-900;
+}

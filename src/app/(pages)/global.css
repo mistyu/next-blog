@@ -1,3 +1,9 @@
+@import 'prism-themes/themes/prism-one-dark.css';
+
+html {
+  @apply tw-scroll-smooth;
+}
+
 body {
   color: hsl(var(--foreground));
   background-color: hsl(var(--background));
