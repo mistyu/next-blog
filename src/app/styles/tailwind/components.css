@@ -13,4 +13,8 @@
   .tw-page-blank {
     @apply tw-bg-white/80 tw-h-56 tw-w-full tw-drop-shadow-lg tw-rounded-md tw-flex tw-justify-center tw-items-center;
   }
+
+  .tw-btn-icon-transparent {
+    @apply tw-block !tw-w-auto !tw-border-none !tw-bg-transparent !tw-shadow-none !tw-ring-0 hover:!tw-bg-transparent focus-visible:!tw-ring-0;
+  }
 }

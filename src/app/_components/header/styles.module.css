@@ -7,7 +7,29 @@
 }
 
 .header > .container {
-  @apply tw-flex tw-h-14 tw-w-full tw-justify-between tw-flex-row tw-mb-0 tw-transition-[height] tw-ease-in-out tw-duration-300;
+  @apply tw-flex tw-flex-nowrap tw-h-14 tw-w-full tw-items-center tw-justify-between tw-mb-0 tw-mx-auto tw-max-w-[90%] md:tw-max-w-[80%] lg:tw-max-w-full
+          tw-transition-[height] tw-ease-in-out tw-duration-300;
+
+  & > .logo,
+  & > .tools {
+    @apply tw-flex tw-items-center lg:tw-max-w-[15%] xl:tw-max-w-[20%] tw-flex-auto;
+  }
+
+  & > .logo {
+    @apply tw-justify-start tw-pl-0 lg:tw-pl-4 xl:tw-pl-8;
+
+    & > .mobileCollapse {
+      @apply lg:tw-hidden tw-mr-2;
+    }
+  }
+
+  & > .tools {
+    @apply tw-justify-end tw-pr-0 lg:tw-pr-4 xl:tw-pr-8;
+  }
+
+  & > .nav {
+    @apply tw-flex tw-items-center tw-hidden lg:tw-flex lg:tw-max-w-[70%] xl:tw-max-w-[60%] tw-flex-auto;
+  }
 }
 
 .header-scrolled > .container {

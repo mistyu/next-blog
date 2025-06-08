@@ -57,7 +57,7 @@
       }
 
       & > .footer {
-        @apply tw-py-3 tw-flex tw-justify-between tw-text-muted-foreground;
+        @apply tw-py-3 tw-flex tw-justify-between tw-text-muted-foreground tw-flex-wrap tw-space-y-3 md:tw-space-y-0;
 
         & > .meta {
           @apply tw-flex tw-items-center;

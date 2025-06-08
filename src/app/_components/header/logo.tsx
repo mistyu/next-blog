@@ -1,8 +1,17 @@
+'use client';
+
 import type { FC } from 'react';
 
-import { cn } from '../shadcn/utils';
+import Link from 'next/link';
+
+import { cn } from '@/app/_components/shadcn/utils';
+
 import $styles from './logo.module.css';
 
 export const HeaderLogo: FC = () => {
-  return <div className={cn($styles.logo)}>yiyue</div>;
+  return (
+    <div className={cn($styles.logo)}>
+      <Link href="/">yiyue</Link>
+    </div>
+  );
 };

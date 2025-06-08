@@ -1,16 +1,16 @@
 .nav {
-  @apply tw-flex tw-flex-auto tw-items-center tw-ml-10;
+  @apply tw-flex tw-items-center tw-justify-start tw-w-full tw-h-full;
 }
 
 .nav > .menus {
-  @apply tw-hidden md:tw-flex md:tw-flex-auto md:tw-max-w-full md:!tw-justify-start;
+  @apply tw-hidden md:tw-flex tw-flex-auto tw-max-w-full !tw-justify-start;
 }
 
 .nav > .menus .menu-item > a {
-  @apply tw-bg-transparent hover:tw-bg-transparent tw-duration-200 tw-inline-flex tw-py-0 tw-text-base;
+  @apply tw-bg-transparent hover:tw-bg-transparent tw-duration-200 tw-transition-all tw-inline-flex tw-py-0 tw-text-base;
 
   &:hover {
-    @apply tw-font-bold;
+    @apply tw-font-semibold;
   }
 }
 
@@ -20,4 +20,24 @@
 
 .nav > .menus > a {
   @apply tw-text-gray-700 hover:tw-text-gray-900;
+}
+
+.mobileNav {
+  @apply tw-flex tw-w-full tw-p-2;
+
+  & > ul {
+    @apply tw-flex tw-w-full;
+
+    & > li {
+      @apply tw-flex tw-w-full tw-items-center tw-h-9 tw-py-1 tw-px-3 tw-mt-2;
+
+      &:first-child {
+        @apply tw-mt-0;
+      }
+
+      & > a {
+        @apply tw-flex tw-items-center tw-w-full tw-h-full;
+      }
+    }
+  }
 }

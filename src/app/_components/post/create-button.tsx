@@ -2,33 +2,37 @@
 
 import type { FC } from 'react';
 
-import { isNil } from 'lodash';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { Suspense, useMemo } from 'react';
+import { Suspense } from 'react';
+
+import { useUrlQuery } from '@/libs/url';
 
 import { Button as CNButton } from '../shadcn/ui/button';
+import { cn } from '../shadcn/utils';
 
-export const Button: FC = () => {
-  const searchParams = useSearchParams();
-  const getUrlQuery = useMemo(() => {
-    const query = new URLSearchParams(searchParams.toString()).toString();
-    // 保留当前分页的url查询，不至于在打开创建文章后，导致首页的文章列表重置分页
-    return isNil(query) || query.length < 1 ? '' : `?${query}`;
-  }, [searchParams]);
+export const Button: FC<{ iconBtn?: boolean }> = ({ iconBtn }) => {
+  const urlQuery = useUrlQuery();
   return (
-    <CNButton asChild className="tw-ml-auto tw-justify-end tw-rounded-sm" variant="outline">
-      <Link href={`/posts/create${getUrlQuery}`}>
+    <CNButton
+      asChild
+      className={cn('tw-ml-auto tw-justify-end', {
+        'focus-visible:!tw-ring-0': !iconBtn,
+        'tw-rounded-sm': !iconBtn,
+      })}
+      variant="outline"
+      size={iconBtn ? 'icon' : 'default'}
+    >
+      <Link href={`/posts/create${urlQuery}`}>
         <Plus />
-        创建
+        {!iconBtn && '创建'}
       </Link>
     </CNButton>
   );
 };
 
-export const PostCreateButton: FC = () => (
+export const PostCreateButton: FC<{ iconBtn?: boolean }> = ({ iconBtn = false }) => (
   <Suspense>
-    <Button />
+    <Button iconBtn={iconBtn} />
   </Suspense>
 );

@@ -14,19 +14,19 @@ import remarkAdmonitions from '../plugins/remark-admonitions';
  * 默认mdx配置
  */
 export const defaultMdxSerializeOptions: Omit<MDXRemoteProps, 'source'> = {
-    options: {
-        disableImports: true,
-        parseFrontmatter: true,
-        vfileDataIntoScope: 'toc',
-        mdxOptions: {
-            remarkPlugins: [remarkDirective, remarkAdmonitions, remarkGfm, remarkFlexibleToc],
-            rehypePlugins: [
-                [rehypeExternalLinks, { target: '_blank' }],
-                rehypeSlug,
-                [rehypeAutolinkHeadings, { behavior: 'append' }],
-                [rehypePrism, { showLineNumbers: true, ignoreMissing: true }],
-                rehypeCodeWindow,
-            ],
-        },
+  options: {
+    disableImports: true,
+    parseFrontmatter: true,
+    vfileDataIntoScope: 'toc',
+    mdxOptions: {
+      remarkPlugins: [remarkDirective, remarkAdmonitions, remarkGfm, remarkFlexibleToc],
+      rehypePlugins: [
+        [rehypeExternalLinks, { target: '_blank' }],
+        rehypeSlug,
+        [rehypeAutolinkHeadings, { behavior: 'append' }],
+        [rehypePrism, { showLineNumbers: true, ignoreMissing: true }],
+        rehypeCodeWindow,
+      ],
     },
+  },
 };
