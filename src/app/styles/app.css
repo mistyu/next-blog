@@ -5,3 +5,15 @@
 .lucide {
   @apply tw-w-4 tw-h-4 tw-stroke-[1px];
 }
+
+.xicon {
+  @apply tw-w-[1em] tw-h-[1em] tw-inline-flex;
+
+  & svg {
+    @apply !tw-w-full !tw-h-full;
+
+    &:not([fill]) {
+      fill: currentcolor;
+    }
+  }
+}

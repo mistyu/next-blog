@@ -31,4 +31,23 @@
       background-size: 100% 0 !important;
     }
   }
+
+  /* 透明滚动条 */
+  .tw-transparent-scrollbar {
+    &::-webkit-scrollbar {
+      @apply tw-w-1 tw-h-1;
+    }
+
+    &::-webkit-scrollbar-track {
+      @apply tw-bg-gray-100 dark:tw-bg-zinc-800;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply tw-bg-gray-300 dark:tw-bg-zinc-600 tw-rounded;
+    }
+
+    &::-webkit-scrollbar-corner {
+      @apply tw-bg-gray-100 dark:tw-bg-zinc-800;
+    }
+  }
 }

@@ -1,0 +1,38 @@
+.desktopToc {
+  @apply tw-w-56 tw-flex-shrink-0 tw-sticky tw-top-16 tw-self-start;
+}
+
+.mobileToc {
+  @apply tw-fixed tw-flex tw-items-center tw-right-0 tw-top-16 tw-z-10 tw-top-[30%] tw-overflow-hidden 
+    tw-transition-transform tw-duration-300 tw-ease-out;
+
+  & > .mobileTocButton > span > svg {
+    filter: drop-shadow(1px 2px 1px rgb(144 130 130 / 40%));
+  }
+
+  & > .mobileTocMain {
+    @apply tw-h-full tw-w-56 tw-bg-[rgb(255_255_255/0.8)] dark:tw-bg-[rgba(24_24_27/0.9)] tw-backdrop-blur-sm tw-drop-shadow-sm
+               tw-shadow-lg  tw-rounded-tl-lg tw-rounded-bl-lg tw-py-2;
+
+    & > .mobileTocTitle {
+      @apply tw-flex tw-items-center tw-py-2 tw-px-4 tw-justify-between;
+    }
+
+    & > .mobileTocContent {
+      @apply tw-overflow-y-auto tw-overflow-x-hidden tw-max-h-96;
+      direction: rtl;
+
+      & > * {
+        direction: ltr;
+      }
+    }
+  }
+
+  &.mobileToc-expanded {
+    @apply tw-translate-x-0;
+  }
+
+  &.mobileToc-collapsed {
+    @apply tw-translate-x-[calc(100%-1.5rem)];
+  }
+}

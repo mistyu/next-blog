@@ -20,8 +20,11 @@ import {
 import { Button } from '@/app/_components/shadcn/ui/button';
 import { deletePostItem } from '@/app/actions/post';
 
+import { useToast } from '../shadcn/hooks/use-toast';
+
 export const PostDelete: FC<{ id: string }> = ({ id }) => {
   const router = useRouter();
+  const { toast } = useToast();
   const [open, setOpen] = useState(false);
   const [pedding, setPedding] = useState(false);
 
@@ -43,7 +46,11 @@ export const PostDelete: FC<{ id: string }> = ({ id }) => {
         setPedding(false);
         setOpen(false);
       } catch (error) {
-        console.error(error);
+        toast({
+          variant: 'destructive',
+          title: '删除失败',
+          description: (error as Error).message,
+        });
       }
 
       // 删除文章后刷新页面

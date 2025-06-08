@@ -31,6 +31,7 @@ export type MdxHydrateOptions = Omit<HydrateProps, 'compiledSource'> & {
  * mdx水合组件props
  */
 export interface MdxHydrateProps extends MdxHydrateOptions {
+  header?: React.ReactNode;
   serialized: SerializeResult<Record<string, unknown>, Scope>;
 }
 
@@ -39,6 +40,7 @@ export interface MdxHydrateProps extends MdxHydrateOptions {
  */
 export interface MdxRnderProps {
   source: Compatible;
+  header?: React.ReactNode;
   options?: MdxSerializeOptions;
   hydrate?: MdxHydrateOptions;
 }
@@ -46,8 +48,8 @@ export interface MdxRnderProps {
 /**
  * mdx编辑器组件props
  */
-export interface MdxEditorProps {
+export type MdxEditorProps = {
   content?: string;
   setContent: (value?: string) => void;
   disabled?: boolean;
-}
+} & Record<string, any>;

@@ -8,8 +8,8 @@ import type { HeadingDepth, HeadingParent, TocItem } from 'remark-flexible-toc';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { cn } from '../../shadcn/utils';
-import $styles from './toc.module.css';
+import { cn } from '../../../shadcn/utils';
+import $styles from './list.module.css';
 
 interface Props {
   toc: TocItem[];
@@ -22,7 +22,7 @@ interface Props {
   skipParents?: Exclude<HeadingParent, 'root'>[];
 }
 
-const Toc: FC<Props> = ({
+const TocList: FC<Props> = ({
   toc,
   maxDepth = 6,
   ordered = false,
@@ -139,4 +139,4 @@ const Toc: FC<Props> = ({
   );
 };
 
-export default Toc;
+export default TocList;
