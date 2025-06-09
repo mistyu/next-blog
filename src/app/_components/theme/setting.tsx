@@ -48,8 +48,8 @@ export const ShadcnThemeSetting: FC = () => {
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon" className="focus-visible:!tw-ring-0">
-          <Sun className="tw-h-[1.2rem] tw-w-[1.2rem] tw-rotate-0 tw-scale-100 tw-transition-all dark:tw--rotate-90 dark:tw-scale-0" />
-          <Moon className="tw-absolute tw-h-[1.2rem] tw-w-[1.2rem] tw-rotate-90 tw-scale-0 tw-transition-all dark:tw-rotate-0 dark:tw-scale-100" />
+          <Sun className="tw-size-[1.2rem] tw-rotate-0 tw-scale-100 tw-transition-all dark:tw--rotate-90 dark:tw-scale-0" />
+          <Moon className="tw-absolute tw-size-[1.2rem] tw-rotate-90 tw-scale-0 tw-transition-all dark:tw-rotate-0 dark:tw-scale-100" />
           <span className="tw-sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>

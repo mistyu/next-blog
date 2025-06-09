@@ -7,11 +7,6 @@ import type { PostCreateOrUpdateData, PostItem } from '@/server/post/type';
  */
 export interface PostCreateFormProps {
   type: 'create';
-  /**
-   * 在文章正在创建时执行一些动画
-   * @param value
-   */
-  setPedding?: (value: boolean) => void;
 }
 
 /**
@@ -27,13 +22,6 @@ export interface PostUpdateFormProps {
  * 文章操作表单在更新文章时的submit(提交表单)函数的参数
  */
 export type PostUpdateData = Partial<Omit<PostCreateOrUpdateData, 'id'>> & { id: string };
-
-/**
- * 文章创建表单的Ref,配合useImperativeHandle可以在表单外部页面调用表单提交函数
- */
-export interface PostCreateFormRef {
-  create?: (e?: BaseSyntheticEvent) => Promise<void>;
-}
 
 /**
  * 文章创建/编辑表单的参数类型

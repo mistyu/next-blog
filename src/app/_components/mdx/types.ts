@@ -48,8 +48,8 @@ export interface MdxRnderProps {
 /**
  * mdx编辑器组件props
  */
-export type MdxEditorProps = {
+export interface MdxEditorProps {
   content?: string;
   setContent: (value?: string) => void;
   disabled?: boolean;
-} & Record<string, any>;
+}

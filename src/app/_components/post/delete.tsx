@@ -51,19 +51,11 @@ export const PostDelete: FC<{ id: string }> = ({ id }) => {
       }
       setPedding(false);
       setOpen(false);
-      // } catch (error) {
-      //     toast({
-      //         variant: 'destructive',
-      //         title: '遇到服务器错误,请联系管理员处理',
-      //         description: (error as Error).message,
-      //     });
-      // }
       // 删除文章后刷新页面
       router.refresh();
     },
     [id],
   );
-
   return (
     <AlertDialog open={open} onOpenChange={changeOpen}>
       <AlertDialogTrigger asChild>

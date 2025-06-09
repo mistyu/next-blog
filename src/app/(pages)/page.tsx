@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { isNil } from 'lodash';
 import { Calendar } from 'lucide-react';
 import Image from 'next/image';
@@ -27,7 +26,6 @@ const HomePage: FC<{ searchParams: Promise<IPaginateQueryProps> }> = async ({ se
   );
   if (!result.ok) throw new Error((await result.json()).message);
   const { items, meta } = await result.json();
-
   if (meta.totalPages && meta.totalPages > 0 && page > meta.totalPages) {
     return redirect('/');
   }
@@ -44,18 +42,10 @@ const HomePage: FC<{ searchParams: Promise<IPaginateQueryProps> }> = async ({ se
               key={item.id}
             >
               <Link className={$styles.thumb} href={`/posts/${item.slug || item.id}`}>
-                <Image
-                  src={item.thumb}
-                  alt={item.title}
-                  fill
-                  priority
-                  sizes="100%"
-                  // 如果使用bun,请务必加上这个,因为bun中启用远程图片优化会报错
-                  unoptimized
-                />
+                <Image src={item.thumb} alt={item.title} fill priority sizes="100%" unoptimized />
               </Link>
               <div className={$styles.content}>
-                <div className={clsx($styles.title, 'tw-hover')}>
+                <div className={$styles.title}>
                   <Link href={`/posts/${item.slug || item.id}`}>
                     <h2 className="tw-ellips tw-animate-decoration tw-animate-decoration-lg">
                       {item.title}
@@ -76,16 +66,14 @@ const HomePage: FC<{ searchParams: Promise<IPaginateQueryProps> }> = async ({ se
                         : formatChineseTime(new Date(item.createdAt))}
                     </time>
                   </div>
-                  ;
                   <PostActionButtons id={item.id} />
                 </div>
               </div>
             </div>
           ))}
         </div>
+        {meta.totalPages! > 1 && <PostListPaginate limit={8} page={page} />}
       </Suspense>
-
-      {meta.totalPages! > 1 && <PostListPaginate limit={8} page={page} />}
     </div>
   );
 };

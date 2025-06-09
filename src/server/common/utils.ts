@@ -1,12 +1,12 @@
-import type { Hook, z } from '@hono/zod-openapi';
 import type { Context, Env } from 'hono';
 
-import { OpenAPIHono } from '@hono/zod-openapi';
+import { type Hook, OpenAPIHono, type z } from '@hono/zod-openapi';
 import { prettyJSON } from 'hono/pretty-json';
 import { isNil } from 'lodash';
 
 import type { HonoAppCreateOptions } from './type';
 
+import { passportInitialize } from '../auth/utils';
 import { errorSchema } from './schema';
 
 /**
@@ -22,6 +22,7 @@ export const createHonoApp = <E extends Env>(config: HonoAppCreateOptions<E> = {
   }
   const app = new OpenAPIHono<E>(options);
   app.use(prettyJSON());
+  app.use('*', passportInitialize());
   return app;
 };
 
@@ -147,4 +148,12 @@ export const createServerErrorResponse = (description?: string) => {
  */
 export const createNotFoundErrorResponse = (description?: string) => {
   return createErrorResponse(description ?? '数据不存在', 404);
+};
+
+/**
+ * 创建用户未认证响应信息
+ * @param description
+ */
+export const createUnauthorizedErrorResponse = (description?: string) => {
+  return createErrorResponse(description ?? '用户未认证', 401);
 };

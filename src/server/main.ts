@@ -2,6 +2,7 @@
 import { swaggerUI } from '@hono/swagger-ui';
 import { prettyJSON } from 'hono/pretty-json';
 
+import { authApi } from './auth/api';
 import { createHonoApp } from './common/utils';
 import { postApi } from './post/api';
 
@@ -9,13 +10,13 @@ const app = createHonoApp().basePath('/api');
 app.use(prettyJSON());
 app.get('/', (c) => c.text('3R Blog API'));
 app.notFound((c) => c.json({ message: 'Not Found', ok: false }, 404));
-const routes = app.route('/posts', postApi);
+const routes = app.route('/posts', postApi).route('/auth', authApi);
 type AppType = typeof routes;
 app.doc('/swagger', {
   openapi: '3.1.0',
   info: {
     version: 'v1',
-    title: 'yiyue blog API',
+    title: '3R blog API',
   },
 });
 app.get('/doc', swaggerUI({ url: '/api/swagger' }));

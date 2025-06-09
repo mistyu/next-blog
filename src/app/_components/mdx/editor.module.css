@@ -18,15 +18,3 @@
     }
   }
 }
-
-.editor {
-  & :global(.cm-scroller) > div[contenteditable='false'] {
-    @apply tw-relative tw-cursor-not-allowed;
-
-    &::before {
-      content: '';
-
-      @apply tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-white/45 tw-z-10;
-    }
-  }
-}

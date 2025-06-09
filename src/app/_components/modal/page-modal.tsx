@@ -2,7 +2,6 @@
 
 import type { FC } from 'react';
 
-import clsx from 'clsx';
 import { trim } from 'lodash';
 import glob from 'micromatch';
 import { usePathname, useRouter } from 'next/navigation';
@@ -17,6 +16,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../shadcn/ui/dialog';
+import { cn } from '../shadcn/utils';
 import $styles from './page-modal.module.css';
 
 export const PageModal: FC<PageModalProps> = ({ title, match, className, children }) => {
@@ -35,7 +35,7 @@ export const PageModal: FC<PageModalProps> = ({ title, match, className, childre
   return show ? (
     <Dialog open defaultOpen onOpenChange={close}>
       <DialogContent
-        className={clsx('sm:tw-max-w-[80%]', className)}
+        className={cn('sm:tw-max-w-[80%]', className)}
         onEscapeKeyDown={(event) => event.preventDefault()}
         onInteractOutside={(event) => event.preventDefault()}
       >

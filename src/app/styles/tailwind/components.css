@@ -9,10 +9,12 @@
     @apply tw-max-w-[90%] md:tw-max-w-[80%] lg:tw-max-w-[70%] xl:tw-max-w-[60%] tw-flex-auto tw-mb-5;
   }
 
+  /* 空白页样式,一般用于404和error页面 */
   .tw-page-blank {
     @apply tw-bg-white/80 dark:tw-bg-black/50 tw-backdrop-blur-sm tw-h-full tw-w-full tw-drop-shadow-lg tw-rounded-md tw-flex tw-justify-center tw-items-center;
   }
 
+  /* 全透明图标按钮 */
   .tw-btn-icon-transparent {
     @apply tw-block !tw-w-auto !tw-border-none !tw-bg-transparent !tw-shadow-none !tw-ring-0 hover:!tw-bg-transparent focus-visible:!tw-ring-0;
   }

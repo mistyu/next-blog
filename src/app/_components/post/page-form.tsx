@@ -3,14 +3,14 @@
 import type { Post } from '@prisma/client';
 import type { FC, MouseEventHandler } from 'react';
 
-import { Button } from 'antd';
 import { isNil } from 'lodash';
 import { Save } from 'lucide-react';
 import { useCallback, useRef, useState } from 'react';
 
-import type { PostActionFormRef } from './types';
+import { PostActionForm } from '@/app/_components/post/action-form';
+import { Button } from '@/app/_components/shadcn/ui/button';
 
-import { PostActionForm } from './action-form';
+import type { PostActionFormRef } from './types';
 
 /**
  * 对action-form的封装，直接用于文章创建和编辑页面

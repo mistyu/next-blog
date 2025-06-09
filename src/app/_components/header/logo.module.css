@@ -1,5 +1,5 @@
 .logo {
-  @apply tw-flex tw-items-center tw-w-24;
+  @apply tw-flex tw-flex-none tw-items-center tw-max-w-28;
 }
 
 .logo > a {

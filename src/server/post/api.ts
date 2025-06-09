@@ -1,5 +1,6 @@
 import { isNil } from 'lodash';
 
+import { createAuthenticatedHandler } from '../auth/utils';
 import { createErrorResult, createHonoApp } from '../common/utils';
 import { postRoutes } from './routes';
 import { getPostItemRequestSchema } from './schema';
@@ -66,41 +67,50 @@ export const postApi = app
       return c.json(createErrorResult('查询文章失败', error), 500);
     }
   })
-  .openapi(postRoutes.createRoute, async (c) => {
-    try {
-      const schema = getPostItemRequestSchema(await isSlugUnique());
-      const validated = await schema.safeParseAsync(await c.req.json());
+  .openapi(
+    postRoutes.createRoute,
+    createAuthenticatedHandler(async (c) => {
+      try {
+        const schema = getPostItemRequestSchema(await isSlugUnique());
+        const validated = await schema.safeParseAsync(await c.req.json());
 
-      if (!validated.success) {
-        return c.json(createErrorResult('请求数据验证失败', validated.error.errors), 400);
+        if (!validated.success) {
+          return c.json(createErrorResult('请求数据验证失败', validated.error.errors), 400);
+        }
+        const result = await createPostItem(validated.data);
+        return c.json(result, 201);
+      } catch (error) {
+        return c.json(createErrorResult('创建文章失败', error), 500);
       }
-      const result = await createPostItem(validated.data);
-      return c.json(result, 201);
-    } catch (error) {
-      return c.json(createErrorResult('创建文章失败', error), 500);
-    }
-  })
-  .openapi(postRoutes.updateRoute, async (c) => {
-    try {
-      const params = c.req.valid('param');
-      const schema = getPostItemRequestSchema(await isSlugUnique(params.id));
-      const validated = await schema.safeParseAsync(await c.req.json());
+    }),
+  )
+  .openapi(
+    postRoutes.updateRoute,
+    createAuthenticatedHandler(async (c) => {
+      try {
+        const params = c.req.valid('param');
+        const schema = getPostItemRequestSchema(await isSlugUnique(params.id));
+        const validated = await schema.safeParseAsync(await c.req.json());
 
-      if (!validated.success) {
-        return c.json(createErrorResult('请求数据验证失败', validated.error.errors), 400);
+        if (!validated.success) {
+          return c.json(createErrorResult('请求数据验证失败', validated.error.errors), 400);
+        }
+        const result = await updatePostItem(params.id, validated.data);
+        return c.json(result, 200);
+      } catch (error) {
+        return c.json(createErrorResult('更新文章失败', error), 500);
       }
-      const result = await updatePostItem(params.id, validated.data);
-      return c.json(result, 200);
-    } catch (error) {
-      return c.json(createErrorResult('更新文章失败', error), 500);
-    }
-  })
-  .openapi(postRoutes.deleteRoute, async (c) => {
-    try {
-      const { id } = c.req.valid('param');
-      const result = await deletePostItem(id);
-      return c.json(result, 200);
-    } catch (error) {
-      return c.json(createErrorResult('删除文章失败', error), 500);
-    }
-  });
+    }),
+  )
+  .openapi(
+    postRoutes.deleteRoute,
+    createAuthenticatedHandler(async (c) => {
+      try {
+        const { id } = c.req.valid('param');
+        const result = await deletePostItem(id);
+        return c.json(result, 200);
+      } catch (error) {
+        return c.json(createErrorResult('删除文章失败', error), 500);
+      }
+    }),
+  );

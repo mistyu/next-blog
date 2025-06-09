@@ -29,14 +29,14 @@ export const deepMerge = <T1, T2>(
  * @param from
  */
 export const generateLowerString = (from: string) => {
-    const slug = pinyin(from, {
-        style: 0,
-        segment: false,
-    })
-        .map((words) => words[0])
-        .join('-');
-    return lowerCase(slug)
-        .split(' ')
-        .map((v) => trim(v, ' '))
-        .join('-');
+  const slug = pinyin(from, {
+    style: 0,
+    segment: false,
+  })
+    .map((words) => words[0])
+    .join('-');
+  return lowerCase(slug)
+    .split(' ')
+    .map((v) => trim(v, ' '))
+    .join('-');
 };

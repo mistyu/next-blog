@@ -16,15 +16,6 @@
   @apply tw-max-w-fit tw-overflow-hidden tw-text-base tw-relative;
 }
 
-/* 滑动指示器 */
-.indicator {
-  @apply tw-absolute tw-left-3 tw-w-0.5 tw-bg-blue-500;
-  height: 1rem; /* 减小边框长度 */
-
-  @apply tw-transition-transform tw-duration-300;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* 使用更稳定的缓动函数 */
-}
-
 .toc-list li {
   @apply tw-relative tw-py-0.5 tw-ml-0; /* 减小垂直内边距 */
 }
@@ -32,8 +23,7 @@
 .toc-list li[data-active='true']::before {
   content: '';
 
-  @apply tw-absolute tw-left-3 tw-h-4 tw-w-0.5 tw-bg-amber-500 dark:tw-bg-amber-400;
-  @apply tw-top-1/2 -tw-translate-y-1/2;
+  @apply tw-hidden lg:tw-block tw-absolute tw-left-3 tw-h-4 tw-w-0.5 tw-bg-amber-500 dark:tw-bg-amber-400 tw-top-1/2 -tw-translate-y-1/2;
 }
 
 /* 激活项的样式 */
@@ -56,23 +46,23 @@
 
 .toc-list li.h1indent a div,
 .toc-list li.h2indent a div {
-  @apply tw-pl-4;
+  @apply tw-pl-2 lg:tw-pl-4;
 }
 
 .toc-list li.h3indent a div {
-  @apply tw-pl-8;
+  @apply tw-pl-4 lg:tw-pl-8;
 }
 
 .toc-list li.h4indent a div {
-  @apply tw-pl-12;
+  @apply tw-pl-6 lg:tw-pl-12;
 }
 
 .toc-list li.h5indent a div {
-  @apply tw-pl-16;
+  @apply tw-pl-8 lg:tw-pl-16;
 }
 
 .toc-list li.h6indent a div {
-  @apply tw-pl-20;
+  @apply tw-pl-10 lg:tw-pl-20;
 }
 
 .toc-list li.tight {

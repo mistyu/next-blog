@@ -1,4 +1,5 @@
 'use client';
+
 import type { FC, MouseEventHandler } from 'react';
 
 import Link from 'next/link';
@@ -7,6 +8,7 @@ import { useCallback } from 'react';
 import $styles from './(pages)/layout.module.css';
 import { Header } from './_components/header';
 import Theme from './_components/theme';
+
 const ErrorBoundaryPage: FC<{ error: Error & { digest?: string }; reset: () => void }> = ({
   error,
   reset,

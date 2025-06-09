@@ -3,7 +3,6 @@ import type { HydrateProps } from 'next-mdx-remote-client';
 import { cn } from '../../shadcn/utils';
 import { Admonition } from '../components/admonition';
 import $styles from '../hydrate.module.css';
-
 /**
  * 默认mdx水合组件配置
  */

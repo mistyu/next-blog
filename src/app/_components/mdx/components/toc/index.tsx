@@ -1,16 +1,14 @@
-import type { FC } from 'react';
-
 import BookNumber24Filled from '@ricons/fluent/BookNumber24Filled';
 import { isNil } from 'lodash';
 import { NotepadText, X } from 'lucide-react';
-import { useCallback, useState } from 'react';
+import { type FC, useCallback, useState } from 'react';
 
 import { Button } from '@/app/_components/shadcn/ui/button';
 import { cn } from '@/app/_components/shadcn/utils';
 
 import type { MdxHydrateProps } from '../../types';
 
-import TocList from './list';
+import { TocList } from './list';
 import $styles from './style.module.css';
 
 /**

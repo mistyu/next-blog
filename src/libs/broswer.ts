@@ -4,6 +4,18 @@ import { useEffect, useState } from 'react';
 import { useMedia } from 'react-use';
 
 /**
+ * 屏幕尺寸检测值
+ */
+const screenSize = {
+  xs: 480,
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+  '2xl': 1400,
+};
+
+/**
  * 监听滚动条位置
  */
 export function useScroll(threshold = 0) {
@@ -20,18 +32,6 @@ export function useScroll(threshold = 0) {
 
   return scrolled;
 }
-
-/**
- * 屏幕尺寸检测值
- */
-const screenSize = {
-  xs: 480,
-  sm: 576,
-  md: 768,
-  lg: 992,
-  xl: 1200,
-  '2xl': 1400,
-};
 
 /**
  * 检测当前屏幕尺寸

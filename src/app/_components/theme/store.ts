@@ -15,7 +15,6 @@ import { getSystemTheme } from './utils';
 const ThemeReducer: Reducer<ThemeOptions, ThemeDispatchs> = produce((draft, action) => {
   switch (action.type) {
     case 'change_mode':
-      console.log(action.value);
       draft.mode = action.value;
       break;
     case 'toggle_mode':

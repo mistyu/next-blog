@@ -1,6 +1,5 @@
 'use client';
 
-import type { Post } from '@prisma/client';
 import type { DeepNonNullable } from 'utility-types';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -34,13 +33,14 @@ export const isSlugUniqueForFrontend = (id?: string) => async (val?: string | nu
   if (isNil(post) || post.id === id) return true;
   return false;
 };
-
 /**
  * 生成react-form-hooks表单的状态
  * 目前仅传入默认数据参数到useForm,后续我们会增加一些zod验证等其它参数
  * @param params
  */
-export const usePostActionForm = (params: { type: 'create' } | { type: 'update'; item: Post }) => {
+export const usePostActionForm = (
+  params: { type: 'create' } | { type: 'update'; item: PostItem },
+) => {
   // 定义默认数据
   const defaultValues = useMemo(() => {
     if (params.type === 'create') {
@@ -69,10 +69,11 @@ export const usePostActionForm = (params: { type: 'create' } | { type: 'update';
       getPostItemRequestSchema(
         isSlugUniqueForFrontend(params.type === 'update' ? params.item.id : undefined),
       ),
-    ) as any,
+    ),
     defaultValues,
   });
 };
+
 /**
  * 生成表单submit(提交)函数用于操作数据的钩子
  * @param params

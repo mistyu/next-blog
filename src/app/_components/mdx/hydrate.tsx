@@ -25,10 +25,10 @@ export const MdxHydrate: FC<MdxHydrateProps> = (props) => {
   const { serialized, header, toc = true, ...rest } = props;
   const [content, setContent] = useState<string | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const options = useMemo(() => deepMerge(defaultMdxHydrateOptions, rest, 'merge'), [rest]);
   const mobile = useIsMobile();
   const tablet = useIsTablet();
   const isMobile = useMemo(() => mobile || tablet, [mobile, tablet]);
+  const options = useMemo(() => deepMerge(defaultMdxHydrateOptions, rest, 'merge'), [rest]);
   useMount(() => {
     // 确保页面完全加载
     if (typeof window !== 'undefined') {
@@ -46,12 +46,10 @@ export const MdxHydrate: FC<MdxHydrateProps> = (props) => {
     }
   });
   useDeepCompareEffect(() => {
-    const { content, error } = hydrate({ ...serialized, ...options } as HydrateProps) as any;
+    const { content, error } = hydrate({ ...serialized, ...options } as HydrateProps);
     if (!error && !isNil(content)) setContent(content);
   }, [serialized, options]);
   useCodeWindow(contentRef, content);
-
-  if (isNil(serialized) || 'error' in serialized) return null;
 
   if (isNil(serialized) || 'error' in serialized) return null;
   return !isNil(content) ? (

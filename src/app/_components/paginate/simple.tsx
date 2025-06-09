@@ -2,7 +2,6 @@
 
 import type { FC } from 'react';
 
-import clsx from 'clsx';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useCallback, useEffect } from 'react';
 
@@ -13,6 +12,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/app/_components/shadcn/ui/pagination';
+
+import { cn } from '../shadcn/utils';
 
 export const Pagination: FC<{ totalPages: number; currentPage: number }> = ({
   totalPages,
@@ -41,7 +42,7 @@ export const Pagination: FC<{ totalPages: number; currentPage: number }> = ({
       <PaginationContent className="tw-w-full tw-justify-between">
         <PaginationItem>
           <PaginationPrevious
-            className={clsx(
+            className={cn(
               'tw-rounded-sm',
               currentPage <= 1
                 ? 'tw-bg-slate-50/70 tw-shadow-gray-50'
@@ -56,7 +57,7 @@ export const Pagination: FC<{ totalPages: number; currentPage: number }> = ({
 
         <PaginationItem>
           <PaginationNext
-            className={clsx(
+            className={cn(
               'tw-rounded-sm',
               currentPage >= totalPages
                 ? 'tw-bg-slate-50/70 tw-shadow-gray-50  dark:tw-bg-slate-800/70 dark:tw-shadow-gray-800'
@@ -72,10 +73,10 @@ export const Pagination: FC<{ totalPages: number; currentPage: number }> = ({
     </CNPagination>
   ) : null;
 };
-export const SimplePaginate: FC<{
-  totalPages: number;
-  currentPage: number;
-}> = ({ totalPages, currentPage }) => (
+export const SimplePaginate: FC<{ totalPages: number; currentPage: number }> = ({
+  totalPages,
+  currentPage,
+}) => (
   <Suspense>
     <Pagination totalPages={totalPages} currentPage={currentPage} />
   </Suspense>

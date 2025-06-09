@@ -1,63 +1,5 @@
 import { isNil } from 'lodash';
-import z from 'zod';
-
-/**
- * 文章操作(创建或更新文章)时的请求数据结构
- * @param slugUniqueValidator Slug唯一性验证结构生成器
- */
-export const getPostItemRequestSchema = (
-  slugUniqueValidator?: (val?: string | null) => Promise<boolean>,
-) => {
-  let slug = z
-    .string()
-    .max(250, {
-      message: 'slug不得超过250个字符',
-    })
-    .nullable()
-    .optional();
-  if (!isNil(slugUniqueValidator)) {
-    slug = slug.refine(slugUniqueValidator, {
-      message: 'slug必须是唯一的,请重新设置',
-    }) as any;
-  }
-  return z
-    .object({
-      title: z
-        .string()
-        .min(1, {
-          message: '标题不得少于1个字符',
-        })
-        .max(200, {
-          message: '标题不得超过200个字符',
-        }),
-      summary: z
-        .string()
-        .max(300, {
-          message: '摘要不得超过300个字符',
-        })
-        .nullable()
-        .optional(),
-      keywords: z
-        .string()
-        .max(200, {
-          message: '描述不得超过200个字符',
-        })
-        .nullable()
-        .optional(),
-      description: z
-        .string()
-        .max(300, {
-          message: '描述不得超过300个字符',
-        })
-        .nullable()
-        .optional(),
-      slug,
-      body: z.string().min(1, {
-        message: '标题不得少于1个字符',
-      }),
-    })
-    .strict();
-};
+import { z } from 'zod';
 
 /**
  * 文章查询响应数据结构
@@ -133,3 +75,61 @@ export const postDetailByIdRequestParamsSchema = z.object({
 export const postDetailBySlugRequestParamsSchema = z.object({
   slug: z.string(),
 });
+
+/**
+ * 文章操作(建或更新文章)时的请求数据结构
+ * @param slugUniqueValidator Slug唯一性验证结构生成器
+ */
+export const getPostItemRequestSchema = (
+  slugUniqueValidator?: (val?: string | null) => Promise<boolean>,
+) => {
+  let slug = z
+    .string()
+    .max(250, {
+      message: 'slug不得超过250个字符',
+    })
+    .nullable()
+    .optional();
+  if (!isNil(slugUniqueValidator)) {
+    slug = slug.refine(slugUniqueValidator, {
+      message: 'slug必须是唯一的,请重新设置',
+    }) as any;
+  }
+  return z
+    .object({
+      title: z
+        .string()
+        .min(1, {
+          message: '标题不得少于1个字符',
+        })
+        .max(200, {
+          message: '标题不得超过200个字符',
+        }),
+      summary: z
+        .string()
+        .max(300, {
+          message: '摘要不得超过300个字符',
+        })
+        .nullable()
+        .optional(),
+      keywords: z
+        .string()
+        .max(200, {
+          message: '描述不得超过200个字符',
+        })
+        .nullable()
+        .optional(),
+      description: z
+        .string()
+        .max(300, {
+          message: '描述不得超过300个字符',
+        })
+        .nullable()
+        .optional(),
+      slug,
+      body: z.string().min(1, {
+        message: '标题不得少于1个字符',
+      }),
+    })
+    .strict();
+};

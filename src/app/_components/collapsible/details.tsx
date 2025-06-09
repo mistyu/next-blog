@@ -2,10 +2,10 @@
 
 import type { FC, MouseEventHandler, PropsWithChildren } from 'react';
 
-import clsx from 'clsx';
 import { useCallback, useRef, useState } from 'react';
 import { useMount } from 'react-use';
 
+import { cn } from '../shadcn/utils';
 import $styles from './details.module.css';
 
 export const Details: FC<PropsWithChildren<{ defaultOpen?: boolean; summary: string }>> = ({
@@ -69,7 +69,7 @@ export const Details: FC<PropsWithChildren<{ defaultOpen?: boolean; summary: str
       <summary className="tw-cursor-pointer" onClick={handleToggle}>
         {summary}
       </summary>
-      <div ref={contentRef} className={clsx($styles.content)}>
+      <div ref={contentRef} className={cn($styles.content)}>
         {children}
       </div>
     </details>

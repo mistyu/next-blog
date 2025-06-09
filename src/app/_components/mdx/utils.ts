@@ -12,10 +12,7 @@ import { defaultMdxSerializeOptions } from './options/serialize';
 export const serializeMdx = async (source: Compatible, options: MdxSerializeOptions = {}) => {
   const result = await serialize({
     source,
-    options: deepMerge(defaultMdxSerializeOptions, options, 'merge') as Omit<
-      MdxSerializeOptions['options'],
-      'source'
-    >,
+    ...deepMerge(defaultMdxSerializeOptions, options, 'merge'),
   });
   return result;
 };

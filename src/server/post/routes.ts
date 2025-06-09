@@ -6,6 +6,7 @@ import {
   createNotFoundErrorResponse,
   createServerErrorResponse,
   createSuccessResponse,
+  createUnauthorizedErrorResponse,
   createValidatorErrorResponse,
 } from '../common/utils';
 import {
@@ -19,7 +20,7 @@ import {
   postPaginateRequestQuerySchema,
   postPaginateResponseSchema,
 } from './schema';
-// ...
+
 export const postTags = ['文章操作'];
 
 export const postRoutes = {
@@ -106,6 +107,7 @@ export const postRoutes = {
     responses: {
       ...create201SuccessResponse('创建的文章数据', postItemResponseSchema.or(z.null())),
       ...createValidatorErrorResponse(),
+      ...createUnauthorizedErrorResponse('认证失败'),
       ...createServerErrorResponse('创建文章失败'),
     },
   }),
@@ -121,6 +123,7 @@ export const postRoutes = {
     responses: {
       ...createSuccessResponse('更新后的文章数据', postItemResponseSchema.or(z.null())),
       ...createValidatorErrorResponse(),
+      ...createUnauthorizedErrorResponse('认证失败'),
       ...createServerErrorResponse('更新文章失败'),
     },
   }),
@@ -135,6 +138,7 @@ export const postRoutes = {
     responses: {
       ...createSuccessResponse('删除文章结果', postItemResponseSchema.or(z.null())),
       ...createValidatorErrorResponse(),
+      ...createUnauthorizedErrorResponse('认证失败'),
       ...createServerErrorResponse('删除文章失败'),
     },
   }),
