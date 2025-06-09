@@ -1,8 +1,6 @@
-import type { Post, Prisma } from '@prisma/client';
 import type { BaseSyntheticEvent } from 'react';
-import type { z } from 'zod';
 
-import type { generatePostFormValidator } from './form-validator';
+import type { PostCreateOrUpdateData, PostItem } from '@/server/post/type';
 
 /**
  * 文章操作表单组件创建文章操作的参数
@@ -22,22 +20,13 @@ export interface PostCreateFormProps {
 export interface PostUpdateFormProps {
   type: 'update';
   // 原来的文章数据，用于作为默认值数据与表单中编辑后的新数据合并，然后更新
-  item: Post;
+  item: PostItem;
 }
-
-/**
- * 文章操作表单在创建文章时的submit(提交表单)函数的参数
- */
-export type PostCreateData = Prisma.PostCreateInput;
 
 /**
  * 文章操作表单在更新文章时的submit(提交表单)函数的参数
  */
-export type PostUpdateData = Partial<Omit<Post, 'id'>> & { id: string };
-/**
- * 文章操作表单的submit(提交表单以创建或更新文章)函数参数
- */
-export type PostFormData = z.infer<ReturnType<typeof generatePostFormValidator>>;
+export type PostUpdateData = Partial<Omit<PostCreateOrUpdateData, 'id'>> & { id: string };
 
 /**
  * 文章创建表单的Ref,配合useImperativeHandle可以在表单外部页面调用表单提交函数

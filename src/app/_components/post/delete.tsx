@@ -18,7 +18,7 @@ import {
   AlertDialogTrigger,
 } from '@/app/_components/shadcn/ui/alert-dialog';
 import { Button } from '@/app/_components/shadcn/ui/button';
-import { deletePostItem } from '@/app/actions/post';
+import { fetchApi } from '@/libs/api';
 
 import { useToast } from '../shadcn/hooks/use-toast';
 
@@ -39,25 +39,31 @@ export const PostDelete: FC<{ id: string }> = ({ id }) => {
 
   const deleteItem: MouseEventHandler<HTMLButtonElement> = useCallback(
     async (e) => {
-      try {
-        e.preventDefault();
-        setPedding(true);
-        await deletePostItem(id);
-        setPedding(false);
-        setOpen(false);
-      } catch (error) {
+      e.preventDefault();
+      setPedding(true);
+      const result = await fetchApi(async (c) => c.api.posts[':id'].$delete({ param: { id } }));
+      if (!result.ok) {
         toast({
           variant: 'destructive',
           title: '删除失败',
-          description: (error as Error).message,
+          description: (await result.json()).message,
         });
       }
-
+      setPedding(false);
+      setOpen(false);
+      // } catch (error) {
+      //     toast({
+      //         variant: 'destructive',
+      //         title: '遇到服务器错误,请联系管理员处理',
+      //         description: (error as Error).message,
+      //     });
+      // }
       // 删除文章后刷新页面
       router.refresh();
     },
     [id],
   );
+
   return (
     <AlertDialog open={open} onOpenChange={changeOpen}>
       <AlertDialogTrigger asChild>

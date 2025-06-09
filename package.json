@@ -30,6 +30,9 @@
     "@ant-design/nextjs-registry": "^1.0.2",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@faker-js/faker": "^9.3.0",
+    "@hono/swagger-ui": "^0.5.1",
+    "@hono/zod-openapi": "0.17.0",
+    "@hono/zod-validator": "^0.7.0",
     "@hookform/resolvers": "^5.1.0",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
@@ -50,6 +53,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "deepmerge": "^4.3.1",
+    "hono": "^4.7.11",
     "immer": "^10.1.1",
     "lodash": "^4.17.21",
     "lucide-react": "^0.469.0",
@@ -131,6 +135,11 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} -r tsconfig-paths/register src/database/seed/index.ts"
   },
   "pnpm": {
+    "updateConfig": {
+      "ignoreDependencies": [
+        "@hono/zod-openapi"
+      ]
+    },
     "peerDependencyRules": {
       "allowAny": [
         "react",
