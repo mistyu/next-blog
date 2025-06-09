@@ -15,7 +15,7 @@ app.doc('/swagger', {
   openapi: '3.1.0',
   info: {
     version: 'v1',
-    title: '3R blog API',
+    title: 'yiyue blog API',
   },
 });
 app.get('/doc', swaggerUI({ url: '/api/swagger' }));
