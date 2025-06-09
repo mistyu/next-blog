@@ -98,7 +98,7 @@ export const usePostFormSubmitHandler = (
           const res = await fetchApi(async (c) =>
             c.api.posts[':id'].$patch({
               param: { id: params.id },
-              // json: data,
+              json: data,
             }),
           );
           if (!res.ok) throw new Error((await res.json()).message);

@@ -74,7 +74,9 @@ export const queryPostItemById = async (id: string): Promise<Post | null> => {
  * 新增文章
  * @param data
  */
-export const createPostItem = async (data: Prisma.PostCreateInput): Promise<Post> => {
+export const createPostItem = async (
+  data: Omit<Prisma.PostCreateInput, 'thumb'>,
+): Promise<Post> => {
   const item = await db.post.create({
     data: { ...data, thumb: `/uploads/thumb/post-${getRandomInt(1, 8)}.png` },
   });
@@ -105,4 +107,15 @@ export const deletePostItem = async (id: string): Promise<Post | null> => {
     return item;
   }
   return null;
+};
+
+/**
+ * 通过ID验证slug的唯一性
+ * @param id
+ */
+export const isSlugUnique = async (id?: string) => async (val?: string | null) => {
+  if (isNil(val) || !val.length) return true;
+  const post = await queryPostItemBySlug(val);
+  if (isNil(post) || post.id === id) return true;
+  return false;
 };

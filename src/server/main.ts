@@ -1,4 +1,5 @@
 /* eslint-disable unused-imports/no-unused-vars */
+import { swaggerUI } from '@hono/swagger-ui';
 import { prettyJSON } from 'hono/pretty-json';
 
 import { createHonoApp } from './common/utils';
@@ -10,5 +11,12 @@ app.get('/', (c) => c.text('3R Blog API'));
 app.notFound((c) => c.json({ message: 'Not Found', ok: false }, 404));
 const routes = app.route('/posts', postApi);
 type AppType = typeof routes;
-// const client = hc<AppType>(process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000');
+app.doc('/swagger', {
+  openapi: '3.1.0',
+  info: {
+    version: 'v1',
+    title: '3R blog API',
+  },
+});
+app.get('/doc', swaggerUI({ url: '/api/swagger' }));
 export { app, type AppType };
