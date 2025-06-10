@@ -1,23 +1,46 @@
-/* eslint-disable unused-imports/no-unused-vars */
 import { swaggerUI } from '@hono/swagger-ui';
-import { prettyJSON } from 'hono/pretty-json';
+import { apiReference } from '@scalar/hono-api-reference';
+import { openAPISpecs } from 'hono-openapi';
 
-import { authApi } from './auth/api';
-import { createHonoApp } from './common/utils';
-import { postApi } from './post/api';
+import { appConfig } from '@/config/app';
 
-const app = createHonoApp().basePath('/api');
-app.use(prettyJSON());
+import { authPath, authRoutes } from './auth/routes';
+import { createHonoApp } from './common/app';
+import { postPath, postRoutes } from './post/routes';
+const app = createHonoApp().basePath(appConfig.apiPath);
 app.get('/', (c) => c.text('3R Blog API'));
 app.notFound((c) => c.json({ message: 'Not Found', ok: false }, 404));
-const routes = app.route('/posts', postApi).route('/auth', authApi);
-type AppType = typeof routes;
-app.doc('/swagger', {
-  openapi: '3.1.0',
-  info: {
-    version: 'v1',
-    title: '3R blog API',
-  },
-});
-app.get('/doc', swaggerUI({ url: '/api/swagger' }));
-export { app, type AppType };
+app.route(postPath, postRoutes).route(authPath, authRoutes);
+
+app.get(
+  '/data',
+  openAPISpecs(app, {
+    documentation: {
+      components: {
+        securitySchemes: {
+          bearerAuth: {
+            type: 'http',
+            scheme: 'bearer',
+            bearerFormat: 'JWT',
+          },
+        },
+      },
+      info: {
+        version: 'v1',
+        title: 'Toome API',
+        description: '3R TS全栈课程项目 - Toome的后端API',
+      },
+    },
+  }),
+);
+
+app.get('/swagger', swaggerUI({ url: '/api/data' }));
+
+app.get(
+  '/docs',
+  apiReference({
+    theme: 'saturn',
+    url: '/api/data',
+  }),
+);
+export { app };

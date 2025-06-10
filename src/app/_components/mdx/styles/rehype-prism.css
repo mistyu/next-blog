@@ -78,16 +78,16 @@
   /* 代码高亮 One Dark主题 */
   code[class*='language-'],
   pre[class*='language-'] {
-    hyphens: none;
     line-height: 1.5;
     color: hsl(220deg 14% 71%);
     text-align: left;
-    text-shadow: 0 1px rgb(0 0 0 / 30%);
+    word-spacing: normal;
+    hyphens: none;
     word-break: normal;
     tab-size: 2;
     white-space: pre;
+    text-shadow: 0 1px rgb(0 0 0 / 30%);
     background: hsl(220deg 13% 18%);
-    word-spacing: normal;
     direction: ltr;
   }
 

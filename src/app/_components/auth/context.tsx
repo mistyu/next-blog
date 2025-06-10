@@ -1,6 +1,5 @@
 import { createContext } from 'react';
 
-import type { DateToString } from '@/libs/types';
 import type { AuthItem } from '@/server/auth/type';
 
 import type { AuthContextType } from './types';
@@ -10,5 +9,7 @@ import type { AuthContextType } from './types';
  */
 export const AuthContext = createContext<AuthContextType>({
   auth: null,
-  setAuth: (_: DateToString<AuthItem> | null) => {},
+  setAuth: (_: AuthItem | null) => {},
+  checked: false,
+  setChecked: (_: boolean) => {},
 });

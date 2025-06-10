@@ -1,0 +1,62 @@
+.overlay {
+  @apply tw-grid tw-place-items-center tw-backdrop-blur-sm;
+}
+
+/* .content {
+    @apply tw-fixed tw-left-[50%] tw-top-[50%] tw-z-50 tw-grid tw-max-w-lg tw-translate-x-[-50%] tw-translate-y-[-50%] tw-gap-4 tw-border tw-bg-background tw-p-6 tw-shadow-lg tw-duration-200 data-[state=open]:tw-animate-in data-[state=closed]:tw-animate-out data-[state=closed]:tw-fade-out-0 data-[state=open]:tw-fade-in-0 data-[state=closed]:tw-zoom-out-95 data-[state=open]:tw-zoom-in-95 data-[state=closed]:tw-slide-out-to-left-1/2 data-[state=closed]:tw-slide-out-to-top-[48%] data-[state=open]:tw-slide-in-from-left-1/2 data-[state=open]:tw-slide-in-from-top-[48%] sm:tw-rounded-lg tw-flex tw-w-[70%] tw-px-0 tw-px-12 tw-py-0 tw-max-w-none tw-border-none [&_>button]:tw-hidden tw-bg-transparent !tw-gap-0 focus-visible:!tw-outline-0;
+} */
+
+.content {
+  @apply /* 定位相关 */
+        tw-fixed 
+        tw-left-[50%] 
+        tw-top-[50%] 
+        tw-z-[--z-index-modal] 
+        tw-translate-x-[-50%] 
+        tw-translate-y-[-50%] 
+
+        /* 布局相关 */
+        tw-flex
+        tw-grid 
+        !tw-gap-0
+
+        /* 尺寸相关 */
+        tw-w-[20rem]
+        md:tw-w-[45rem]
+        lg:tw-w-[60rem]
+        tw-max-w-none
+        tw-p-0
+
+        /* 外观相关 */
+        tw-bg-transparent
+        tw-rounded-sm
+        md:tw-rounded-lg
+        tw-border-none
+        focus-visible:!tw-outline-0
+        [&_>button]:tw-hidden
+
+        /* 动画与过渡相关 */
+        tw-duration-200;
+}
+
+.content[data-state='open'] {
+  @apply tw-animate-in
+        tw-fade-in-0
+        tw-zoom-in-95
+        tw-slide-in-from-left-1/2
+        tw-slide-in-from-top-[48%];
+}
+
+.content[data-state='close'] {
+  @apply tw-animate-out
+        tw-fade-out-0
+        tw-zoom-out-95
+        tw-slide-out-to-left-1/2
+        tw-slide-out-to-top-[48%];
+}
+
+.closeBtn {
+  @apply tw-flex tw-size-10 tw-items-center tw-justify-center tw-rounded-full
+                        tw-text-lg tw-text-white tw-shadow-nymd tw-shadow-white/60 tw-transition
+                         tw-duration-300 tw-ease-in-out hover:tw-rotate-180 focus-visible:!tw-outline-0;
+}

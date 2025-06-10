@@ -45,8 +45,8 @@ export const Pagination: FC<{ totalPages: number; currentPage: number }> = ({
             className={cn(
               'tw-rounded-sm',
               currentPage <= 1
-                ? 'tw-bg-slate-50/70 tw-shadow-gray-50'
-                : ' tw-bg-white/90 hover:tw-shadow-nylg hover:tw-shadow-white',
+                ? 'tw-bg-slate-50/70 tw-shadow-gray-50 dark:tw-bg-slate-800/70 dark:tw-shadow-gray-800'
+                : ' tw-bg-white/90 hover:tw-shadow-nylg hover:tw-shadow-white  dark:tw-bg-black/90 dark:hover:tw-shadow-black',
             )}
             href={getPageUrl(currentPage - 1)}
             disabled={currentPage <= 1}

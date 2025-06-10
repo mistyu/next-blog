@@ -1,5 +1,5 @@
-import { z } from '@hono/zod-openapi';
-
+import { z } from 'zod';
+import 'zod-openapi/extend';
 export const errorSchema = z
   .object({
     code: z.number().optional().openapi({ type: 'number' }),

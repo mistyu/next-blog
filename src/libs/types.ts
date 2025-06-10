@@ -3,8 +3,14 @@ import type dayjs from 'dayjs';
  * 应用配置
  */
 export interface AppConfig {
+  /**
+   * 基础url
+   */
   baseUrl: string;
-  apiUrl: string;
+  /**
+   * API路径
+   */
+  apiPath: string;
   /**
    * 时区,默认Asia/Shanghai
    */

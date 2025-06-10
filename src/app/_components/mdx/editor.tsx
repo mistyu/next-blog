@@ -1,10 +1,13 @@
 'use client';
 
 import '@uiw/react-md-editor/markdown-editor.css';
+
+import type { FC } from 'react';
+
 import { commands } from '@uiw/react-md-editor';
 import { debounce, isNil } from 'lodash';
 import dynamic from 'next/dynamic';
-import { type FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { useIsMobile } from '@/libs/broswer';
 

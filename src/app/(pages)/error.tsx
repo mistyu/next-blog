@@ -14,8 +14,8 @@ const ErrorBoundaryPage: FC<{ error: Error & { digest?: string }; reset: () => v
     reset();
   }, []);
   return (
-    <div className="tw-page-container">
-      <div className="tw-page-blank  tw-flex tw-flex-col tw-space-y-4">
+    <div className="tw-page-item">
+      <div className="tw-page-blank tw-page-container tw-flex tw-flex-col tw-space-y-4">
         <h2>糟糕!服务器挂了...</h2>
         <p>
           错误信息: {error.message} |

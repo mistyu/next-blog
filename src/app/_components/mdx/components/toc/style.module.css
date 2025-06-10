@@ -3,7 +3,7 @@
 }
 
 .mobileToc {
-  @apply tw-fixed tw-flex tw-items-center tw-right-0 tw-top-16 tw-z-10 tw-top-[30%] tw-overflow-hidden 
+  @apply tw-fixed tw-flex tw-items-center tw-right-0 tw-top-16 tw-z-[--z-index-mobile-toc] tw-top-[30%] tw-overflow-hidden 
     tw-transition-transform tw-duration-300 tw-ease-out;
 
   & > .mobileTocButton > span > svg {

@@ -1,4 +1,4 @@
-import type { FC, MouseEventHandler, RefObject } from 'react';
+import type { FC, JSX, MouseEventHandler, RefObject } from 'react';
 
 import { isNil } from 'lodash';
 import { useCallback, useEffect, useState } from 'react';
@@ -36,7 +36,10 @@ export const CopyButton: FC<{ wrapperEl: Element | null }> = ({ wrapperEl }) => 
  * @param ref
  * @param content
  */
-export const useCodeWindow = (ref: RefObject<HTMLDivElement | null>, content: string | null) => {
+export const useCodeWindow = (
+  ref: RefObject<HTMLDivElement | null>,
+  content: JSX.Element | null,
+) => {
   const [wrapperEls, setWrapperEls] = useState<NodeListOf<Element> | undefined>();
   const preventSummaryToggle = useCallback((e: Event) => e.preventDefault(), []);
   useEffect(() => {

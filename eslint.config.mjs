@@ -9,6 +9,7 @@ import unusedImports from 'eslint-plugin-unused-imports';
 
 export default antfu(
   {
+    isInEditor: false,
     react: true,
     typescript: true,
     stylistic: false,
@@ -22,8 +23,8 @@ export default antfu(
       '.next',
       'public',
       'pnpm-lock.yaml',
+      'package-lock.json',
       'next-env.d.ts',
-      '*.json',
     ],
   },
   {

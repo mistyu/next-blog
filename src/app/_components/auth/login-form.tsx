@@ -8,25 +8,23 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { cn } from '@/app/_components/shadcn/utils';
-import { checkAccessToken } from '@/libs/token';
 
 import { Button } from '../shadcn/ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '../shadcn/ui/form';
 import { Input } from '../shadcn/ui/input';
-import { useAuthLoginForm, useAuthLoginSubmitHandler } from './hooks';
+import { AuthProtector } from './checking';
+import { useAuth, useAuthLoginForm, useAuthLoginSubmitHandler } from './hooks';
 
-export const AuthLoginForm: FC = () => {
+const LoginForm: FC = () => {
+  const auth = useAuth();
   const router = useRouter();
   const form = useAuthLoginForm();
   const [authEror, setAuthError] = useState<string | null>(null);
   const submitHandler = useAuthLoginSubmitHandler(setAuthError);
 
   useEffect(() => {
-    (async () => {
-      const auth = await checkAccessToken();
-      if (!isNil(auth)) router.replace('/');
-    })();
-  }, []);
+    if (!isNil(auth)) router.replace('/');
+  }, [auth]);
 
   return (
     <Form {...form}>
@@ -94,3 +92,8 @@ export const AuthLoginForm: FC = () => {
     </Form>
   );
 };
+export const AuthLoginForm: FC = () => (
+  <AuthProtector>
+    <LoginForm />
+  </AuthProtector>
+);

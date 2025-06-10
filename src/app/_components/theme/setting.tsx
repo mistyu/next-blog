@@ -4,13 +4,14 @@ import type { FC } from 'react';
 import { Switch } from 'antd';
 import { Moon, Sun } from 'lucide-react';
 
-import { Button } from '../shadcn/ui/button';
+import { Button } from '@/app/_components/shadcn/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '../shadcn/ui/dropdown-menu';
+} from '@/app/_components/shadcn/ui/dropdown-menu';
+
 import { useTheme, useThemeActions } from './hooks';
 
 /**

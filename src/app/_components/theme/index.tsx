@@ -1,6 +1,8 @@
 'use client';
+import type { FC, PropsWithChildren } from 'react';
+
 import { isNil } from 'lodash';
-import { type FC, type PropsWithChildren, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import type { ThemeOptions, ThemeStoreType } from './types';
 

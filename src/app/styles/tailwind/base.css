@@ -18,7 +18,7 @@
   }
 
   html {
-    font-family: var(--font-family-standard);
+    font-family: var(--font-family-base);
   }
 
   body {
@@ -47,5 +47,15 @@
 
   h6 {
     @apply tw-text-xs;
+  }
+}
+
+@layer base {
+  * {
+    @apply tw-border-border;
+  }
+
+  body {
+    @apply tw-bg-background tw-text-foreground;
   }
 }

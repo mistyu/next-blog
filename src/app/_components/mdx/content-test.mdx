@@ -210,9 +210,9 @@ export class Post {
 
 `class-validator`对一些经常使用的特殊类型有专门的处理方法
 
-#### 集合类型
+#### 分类类型
 
-验证数组,`Sets`,`Map`等集合类型需要开启`each`选项
+验证数组,`Sets`,`Map`等分类类型需要开启`each`选项
 
 #### 验证数组
 
@@ -1220,7 +1220,7 @@ export class User {
 ```javascript
 import {Type} from "class-transformer";
 
-export class AlbumCollection extends Array<Album> {
+export class AlbumCategory extends Array<Album> {
     // custom array functions ...
 }
 
@@ -1232,7 +1232,7 @@ export class Photo {
 
     @Type(() => Album)
     albums: Album[];
-    // albums: AlbumCollection; 使用自定义类型
+    // albums: AlbumCategory; 使用自定义类型
 }
 
 export class Skill {

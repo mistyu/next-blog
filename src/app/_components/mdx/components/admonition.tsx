@@ -1,13 +1,7 @@
+import type { LucideIcon } from 'lucide-react';
 import type { FC } from 'react';
 
-import {
-  AlertTriangle,
-  Flame,
-  Info,
-  LightbulbIcon,
-  type LucideIcon,
-  NotebookPen,
-} from 'lucide-react';
+import { AlertTriangle, Flame, Info, LightbulbIcon, NotebookPen } from 'lucide-react';
 import React from 'react';
 
 import type { AdmonitionType } from '../plugins/remark-admonitions';
@@ -70,16 +64,28 @@ export const Admonition: FC<AdmonitionProps> = ({ type, title, children }) => {
   return (
     <div
       className={cn(
-        'tw-flex tw-my-4 tw-rounded tw-border-l-4 tw-p-2',
+        'tw-my-4 tw-rounded tw-border-l-4 tw-p-2',
         'tw-shadow-sm dark:tw-shadow-none',
         config.containerClasses,
       )}
     >
-      <div className="tw-flex tw-items-center tw-gap-2">
-        <Icon className={cn('tw-h-5 tw-w-5', config.iconClasses)} />
-        <p className={cn(config.titleClasses)}>{title || config.title}</p>
-      </div>
-      <div className="tw-prose dark:tw-prose-invert">{children}</div>
+      {/* 只在有标题时显示标题栏 */}
+      {title && (
+        <div className="tw-mb-2 tw-flex tw-items-center tw-gap-2">
+          <Icon className={cn('tw-h-5 tw-w-5', config.iconClasses)} />
+          <p className={cn('tw-font-medium tw-m-0', config.titleClasses)}>{title}</p>
+        </div>
+      )}
+
+      {/* 无标题时只显示图标 */}
+      {!title && (
+        <div className="tw-mb-2 tw-flex tw-items-center tw-gap-2">
+          <Icon className={cn('tw-h-5 tw-w-5', config.iconClasses)} />
+          <p className={cn('tw-font-medium tw-m-0', config.titleClasses)}>{config.title}</p>
+        </div>
+      )}
+
+      <div className="tw-prose dark:tw-prose-invert tw-max-w-none">{children}</div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 'use client';
 import { theme } from 'antd';
 import { debounce } from 'lodash';
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { use, useCallback, useEffect, useMemo, useState } from 'react';
 import { useStore } from 'zustand';
 import { useShallow } from 'zustand/shallow';
 
@@ -14,7 +14,7 @@ import { getSystemTheme } from './utils';
  * 获取整个状态池对象
  */
 export function useThemeStore() {
-  const store = useContext(ThemeContext);
+  const store = use(ThemeContext);
   if (!store) throw new Error('Missing Theme Component in the tree');
   return store;
 }

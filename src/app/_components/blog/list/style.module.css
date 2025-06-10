@@ -1,0 +1,101 @@
+.blogIndex {
+  @apply tw-flex tw-w-full tw-flex-auto tw-flex-col lg:tw-flex-row lg:tw-space-x-4;
+
+  & > .container {
+    @apply tw-order-2 tw-flex tw-flex-auto tw-flex-col tw-space-y-5 lg:tw-order-1;
+  }
+}
+
+.list {
+  @apply tw-w-full tw-space-y-4;
+
+  & .item {
+    @apply tw-rounded-md tw-flex tw-flex-col
+        tw-duration-300 tw-backdrop-blur-md
+        tw-drop-shadow-[5px_5px_5px_rgba(0,0,0,0.35)] tw-transition-all tw-duration-300;
+
+    &:last-child {
+      @apply tw-mb-0;
+    }
+
+    &:hover {
+      @apply tw-scale-[1.02];
+
+      &::before {
+        @apply tw-opacity-100;
+      }
+
+      & > .content {
+        @apply dark:tw-drop-shadow-[0_0_15px_rgba(255,255,255,0.35)] tw-drop-shadow-[0_0_15px_rgba(0,0,0,0.35)];
+      }
+    }
+
+    & > .content {
+      @apply tw-w-full tw-rounded-md tw-px-5  tw-transition-all tw-duration-300;
+
+      & > .header {
+        @apply tw-py-2 tw-flex tw-items-center;
+      }
+
+      & > .header > .icon {
+        background-position-x: 0;
+        background-size: 2.5rem auto;
+
+        @apply tw-w-[46px]
+                    tw-h-[42px]
+                    tw-border
+                    tw-float-left
+                    tw-mr-3
+                    tw-relative
+                    tw-inline-block
+                    tw-rounded-[50%]
+                    tw-bg-no-repeat;
+      }
+
+      & > .header > .headerRight {
+        @apply tw-flex tw-flex-col tw-justify-between tw-w-full lg:tw-w-auto;
+
+        & > .title {
+          @apply tw-flex tw-max-w-full tw-block tw-overflow-hidden tw-text-foreground;
+
+          & > h2 {
+            @apply tw-text-base tw-font-bold;
+          }
+        }
+      }
+
+      & > .summary {
+        @apply tw-py-2 tw-text-muted-foreground;
+      }
+
+      & > .footer {
+        @apply tw-py-3 tw-flex tw-justify-between tw-text-muted-foreground tw-flex-wrap tw-space-y-3 md:tw-space-y-0;
+
+        & > .meta {
+          @apply tw-flex tw-flex-col;
+
+          & > .tags {
+            @apply tw-flex tw-flex-wrap tw-items-center;
+
+            & > a {
+              @apply tw-text-sm tw-text-muted-foreground tw-mr-2 tw-mb-2 tw-border tw-border-muted-foreground tw-rounded-[0.2rem] tw-px-2;
+
+              &.tagActived,
+              &:hover {
+                @apply tw-text-foreground tw-border-foreground;
+              }
+            }
+          }
+
+          & > .info {
+            @apply tw-flex tw-flex-wrap tw-items-center;
+
+            & > span {
+              @apply tw-mt-2 tw-inline-flex tw-items-center tw-text-sm tw-text-muted-foreground tw-mr-3;
+            }
+          }
+        }
+      }
+    }
+  }
+}

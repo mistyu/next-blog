@@ -1,7 +1,9 @@
+import type { ConnectorType } from './types';
+
 import { truncateMySQLTable } from './mysql';
 import { truncatePostgresTable } from './postgres';
 import { truncateSQLiteTable } from './sqlite';
-import { type ConnectorType, ConnectorTypes } from './types';
+import { ConnectorTypes } from './types';
 
 export function supportedConnector(connector: ConnectorType) {
   return ConnectorTypes.includes(connector);

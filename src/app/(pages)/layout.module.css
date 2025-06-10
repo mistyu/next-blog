@@ -1,10 +1,12 @@
 .layout {
   /* 设置全局背景图片 */
-  @apply tw-min-h-full tw-w-full tw-flex tw-p-0 tw-m-0 tw-flex-col
-    tw-bg-[url(../styles/images/bg-light.png)] 
-    tw-bg-fixed tw-bg-cover tw-bg-no-repeat tw-bg-center;
+  @apply tw-min-h-full tw-w-full tw-flex tw-p-0 tw-m-0 tw-flex-col tw-bg-fixed tw-bg-cover tw-bg-no-repeat tw-bg-center tw-bg-stone-200/80 dark:tw-bg-zinc-900/60 tw-justify-between;
+
+  /* tw-bg-background */
+
+  /* tw-bg-[url(../styles/images/bg-light.png)]  */
 }
 
 html:global(.dark) .layout {
-  @apply tw-bg-[url(../styles/images/bg-dark.png)];
+  /* @apply tw-bg-[url(../styles/images/bg-dark.png)]; */
 }

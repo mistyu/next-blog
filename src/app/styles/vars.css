@@ -1,6 +1,11 @@
 /* 这些变量是从shadcn/ui写入src/app/globals.css中的样式复制而来的 */
 @layer base {
   :root {
+    --color-1: 0 100% 63%;
+    --color-2: 270 100% 63%;
+    --color-3: 210 100% 63%;
+    --color-4: 195 100% 63%;
+    --color-5: 90 100% 63%;
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -29,6 +34,11 @@
   }
 
   .dark {
+    --color-1: 0 100% 63%;
+    --color-2: 270 100% 63%;
+    --color-3: 210 100% 63%;
+    --color-4: 195 100% 63%;
+    --color-5: 90 100% 63%;
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
@@ -63,12 +73,21 @@
     --font-size-base: 0.875rem;
 
     /* 默认字体 */
-    --font-family-standard:
-      'Source Sans Pro', 'Hiragino Sans GB', 'Microsoft Yahei', simsun, helvetica, arial,
-      sans-serif, monospace;
+    --font-family-base:
+      -apple-system, blinkmacsystemfont, tahoma, arial, 'Hiragino Sans GB', 'Microsoft YaHei',
+      'WenQuanYi Micro Hei', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+      'Noto Color Emoji';
+
+    /* 霞鹜文楷字体 */
+    --font-family-lxgw:
+      'LXGW WenKai', '楷体', 'STKaiti', -apple-system, blinkmacsystemfont, tahoma, arial,
+      'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, 'Apple Color Emoji',
+      'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
     /* 默认代码字体 */
     --font-family-code:
-      'Fira Code', 'Inconsolata', 'Monaco', 'Consolas', 'Courier New', 'Courier', monospace;
+      'Fira Code', -apple-system, blinkmacsystemfont, tahoma, arial, 'Hiragino Sans GB',
+      'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', 'Noto Color Emoji';
   }
 }

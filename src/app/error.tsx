@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useCallback } from 'react';
 
 import $styles from './(pages)/layout.module.css';
-import { Header } from './_components/header';
+import { Header } from './_components/layout/header';
 import Theme from './_components/theme';
 
 const ErrorBoundaryPage: FC<{ error: Error & { digest?: string }; reset: () => void }> = ({
@@ -21,8 +21,8 @@ const ErrorBoundaryPage: FC<{ error: Error & { digest?: string }; reset: () => v
     <Theme>
       <div className={$styles.layout}>
         <Header />
-        <div className="tw-page-container">
-          <div className="tw-page-blank  tw-flex tw-flex-col tw-space-y-4">
+        <div className="tw-page-item">
+          <div className="tw-page-blank tw-page-container tw-flex tw-flex-col tw-space-y-4">
             <h2>糟糕!服务器挂了...</h2>
             <p>
               错误信息: {error.message} |

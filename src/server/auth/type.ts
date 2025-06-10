@@ -1,7 +1,7 @@
 import type { DurationUnitsObjectType } from 'dayjs/plugin/duration';
 import type { z } from 'zod';
 
-import type { authItemSchema, authLoginRequestSchema, authLoginResponseSchema } from './schema';
+import type { authLoginRequestBodySchema, authSchema, tokenSchema } from './schema';
 
 /**
  * Auth配置
@@ -17,6 +17,8 @@ export interface AuthConfig {
   tokenExpiry: DurationUnitsObjectType | number;
 }
 
-export type AuthLoginRequest = z.infer<typeof authLoginRequestSchema>;
-export type AuthLoginResponse = z.infer<typeof authLoginResponseSchema>;
-export type AuthItem = z.infer<typeof authItemSchema>;
+export type AuthLoginRequest = z.infer<typeof authLoginRequestBodySchema>;
+export type AuthLoginResponse =
+  | (z.infer<typeof tokenSchema> & { code: 200 })
+  | { code: 401 | 500; message: string };
+export type AuthItem = z.infer<typeof authSchema>;

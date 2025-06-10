@@ -1,4 +1,4 @@
 .item {
-  @apply tw-flex tw-flex-col tw-w-auto tw-space-y-8 tw-bg-white/90 dark:tw-bg-black/50 
+  @apply tw-flex tw-flex-col tw-w-auto tw-space-y-8
    !tw-w-full lg:!tw-w-auto tw-mx-auto tw-px-5 tw-py-9 tw-rounded-md tw-shadow-md tw-mt-28;
 }

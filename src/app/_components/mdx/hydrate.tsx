@@ -3,7 +3,7 @@
 import './styles/index.css';
 
 import type { HydrateProps } from 'next-mdx-remote-client';
-import type { FC } from 'react';
+import type { FC, JSX } from 'react';
 
 import { isNil } from 'lodash';
 import { hydrate } from 'next-mdx-remote-client';
@@ -15,7 +15,7 @@ import { deepMerge } from '@/libs/utils';
 
 import type { MdxHydrateProps } from './types';
 
-import { PostContentSkeleton } from '../post/skeleton';
+import { PostContentSkeleton } from '../blog/skeleton';
 import { Toc } from './components/toc';
 import { useCodeWindow } from './hooks/code-window';
 import $styles from './hydrate.module.css';
@@ -23,7 +23,7 @@ import { defaultMdxHydrateOptions } from './options/hydrate';
 
 export const MdxHydrate: FC<MdxHydrateProps> = (props) => {
   const { serialized, header, toc = true, ...rest } = props;
-  const [content, setContent] = useState<string | null>(null);
+  const [content, setContent] = useState<JSX.Element | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const mobile = useIsMobile();
   const tablet = useIsTablet();

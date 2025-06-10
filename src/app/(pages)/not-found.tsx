@@ -3,8 +3,8 @@ import type { FC } from 'react';
 import Link from 'next/link';
 
 const NotFoundPage: FC = () => (
-  <div className="tw-page-container">
-    <div className="tw-page-blank">
+  <div className="tw-page-item">
+    <div className="tw-page-blank tw-page-container">
       <h2>Not Found</h2>
       <span className="tw-mx-3">|</span>
       <p>
