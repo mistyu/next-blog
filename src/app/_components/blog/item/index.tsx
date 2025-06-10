@@ -49,7 +49,7 @@ export const PostItemIndex: FC<{ item: string }> = async ({ item }) => {
                   <div className={$styles.meta}>
                     <div className={$styles.info}>
                       <span>
-                        <User className="tw-mr-2" /> pincman
+                        <User className="tw-mr-2" /> yuyue
                       </span>
                       <span>
                         <Calendar className="tw-mr-2" />

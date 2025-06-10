@@ -48,7 +48,7 @@ export const PostList: FC<{ items: PostItem[] }> = ({ items }) => (
             <div className={$styles.meta}>
               <div className={$styles.info}>
                 <span>
-                  <User className="tw-mr-2" /> pincman
+                  <User className="tw-mr-2" /> yuyue
                 </span>
                 <span>
                   <Calendar className="tw-mr-2" />
