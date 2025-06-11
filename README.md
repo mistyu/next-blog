@@ -1,3 +1,5 @@
+Next.js+Hono+Prisma开发,并运行在vercel与supabase之上
+
 ## Getting Started
 
 First, run the development server:
