@@ -47,6 +47,8 @@ export const usePostActionForm = (
         body: '',
         summary: '',
         slug: '',
+        tags: [],
+        categoryId: '',
         keywords: '',
         description: '',
       } as DeepNonNullable<PostCreateOrUpdateData>;
@@ -57,6 +59,8 @@ export const usePostActionForm = (
       body: params.item.body,
       summary: isNil(params.item.summary) ? '' : params.item.summary,
       slug: isNil(params.item.slug) ? '' : params.item.slug,
+      tags: params.item.tags || [],
+      categoryId: isNil(params.item.category) ? '' : params.item.category.id,
       keywords: isNil(params.item.keywords) ? '' : params.item.keywords,
       description: isNil(params.item.description) ? '' : params.item.description,
     } as DeepNonNullable<PostUpdateData>;

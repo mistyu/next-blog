@@ -3,10 +3,10 @@
 }
 
 .user .avatar {
-  @apply tw-w-10 tw-h-10 tw-block tw-rounded-full tw-p-1 tw-bg-white tw-cursor-pointer tw-duration-200 tw-transition-shadow;
+  @apply tw-w-10 tw-h-10 tw-block tw-rounded-full tw-p-0.5 tw-bg-white tw-cursor-pointer tw-duration-200 tw-transition-shadow;
 
   & img {
-    @apply tw-transition-transform tw-duration-200;
+    @apply tw-transition-transform tw-duration-200 tw-rounded-full;
 
     &:hover {
       transform: rotate(360deg);

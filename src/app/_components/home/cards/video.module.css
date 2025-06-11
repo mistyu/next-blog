@@ -1,0 +1,15 @@
+.main {
+  @apply tw-h-full tw-w-full tw-rounded-sm tw-bg-cover 
+            tw-bg-center tw-bg-no-repeat tw-items-center tw-justify-center tw-flex
+            before:tw-absolute before:tw-inset-0 before:tw-transition-all before:tw-rounded-sm
+            [&_]:hover:before:tw-bg-gradient-to-b  
+            [&_]:hover:before:tw-from-white/10 [&_]:hover:before:tw-to-white/10 
+            dark:[&_]:hover:before:tw-from-black/10 dark:[&_]:hover:before:tw-to-black/10
+            [&_]:hover:before:tw-backdrop-blur-sm;
+}
+
+.openBtn {
+  @apply tw-flex tw-size-16 tw-items-center tw-justify-center tw-rounded-full tw-bg-black/10 
+                            tw-shadow-nysm tw-shadow-zinc-900/60  tw-backdrop-blur-md tw-transition-all
+                            tw-duration-500 hover:tw-rotate-[360deg] hover:tw-bg-white/50  hover:tw-shadow-nylg;
+}

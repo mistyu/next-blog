@@ -7,9 +7,9 @@ export const createUserData = async () => {
   await prisma.user.create({
     select: { id: true },
     data: {
-      username: 'yuyue',
+      username: 'yiyue',
       password: hashPassword('12345678aA$'),
-      email: 'yuyue@example.com',
+      email: 'lichenhui821@qq.com',
     },
   });
   for (let index = 0; index < 12; index++) {

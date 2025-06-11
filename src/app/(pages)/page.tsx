@@ -1,14 +1,13 @@
+import type { Metadata, ResolvingMetadata } from 'next';
 import type { FC } from 'react';
 
-import type { IPaginateQueryProps } from '@/app/_components/paginate/types';
+import { Home } from '../_components/home';
+export const generateMetadata = async (
+  _metadata: Record<string, any>,
+  parent: ResolvingMetadata,
+): Promise<Metadata> => ({
+  title: `首页 | ${(await parent).title?.absolute}`,
+});
+const HomePage: FC = async () => <Home />;
 
-import { BlogIndex } from '@/app/_components/blog/list';
-
-const BlogIndexPage: FC<{
-  searchParams: Promise<IPaginateQueryProps & { tag?: string }>;
-}> = async ({ searchParams }) => {
-  const rest = await searchParams;
-  return <BlogIndex {...rest} />;
-};
-
-export default BlogIndexPage;
+export default HomePage;

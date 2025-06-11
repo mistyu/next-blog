@@ -5,12 +5,18 @@ import { openAPISpecs } from 'hono-openapi';
 import { appConfig } from '@/config/app';
 
 import { authPath, authRoutes } from './auth/routes';
+import { categoryPath, categoryRoutes } from './category/routes';
 import { createHonoApp } from './common/app';
 import { postPath, postRoutes } from './post/routes';
+import { tagPath, tagRoutes } from './tag/routes';
 const app = createHonoApp().basePath(appConfig.apiPath);
 app.get('/', (c) => c.text('3R Blog API'));
 app.notFound((c) => c.json({ message: 'Not Found', ok: false }, 404));
-app.route(postPath, postRoutes).route(authPath, authRoutes);
+app
+  .route(tagPath, tagRoutes)
+  .route(categoryPath, categoryRoutes)
+  .route(postPath, postRoutes)
+  .route(authPath, authRoutes);
 
 app.get(
   '/data',

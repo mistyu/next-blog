@@ -11,7 +11,9 @@ import $styles from './logo.module.css';
 export const HeaderLogo: FC = () => {
   return (
     <div className={cn($styles.logo)}>
-      <Link href="/">yiyue</Link>
+      <Link href="https://github.com/mistyu" target="_blank">
+        yiyue
+      </Link>
     </div>
   );
 };

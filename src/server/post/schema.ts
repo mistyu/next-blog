@@ -1,6 +1,12 @@
 import { isNil } from 'lodash';
-import 'zod-openapi/extend';
 import { z } from 'zod';
+import { extendZodWithOpenApi } from 'zod-openapi';
+
+import { authSchema } from '../auth/schema';
+import { categoryListSchema, categorySchema } from '../category/schema';
+import { tagListSchema } from '../tag/schema';
+
+extendZodWithOpenApi(z);
 
 /**
  * 文章查询响应数据结构
@@ -21,6 +27,10 @@ export const postSchema = z
     body: z.string().openapi({ description: '文章内容' }),
     createdAt: z.string().openapi({ description: '文章创建时间' }),
     updatedAt: z.string().openapi({ description: '最近更新时间' }),
+    author: authSchema.openapi({ description: '文章作者' }),
+    tags: tagListSchema.openapi({ description: '关联标签列表' }),
+    categories: categoryListSchema.openapi({ description: '关联分类及其祖先分类列表' }),
+    category: categorySchema.nullable().openapi({ description: '关联分类' }),
   })
   .strict()
   .openapi({ ref: 'Post', description: '文章详情数据' });
@@ -57,6 +67,8 @@ export const postPaginateRequestQuerySchema = z.object({
   page: z.coerce.number().optional().openapi({ description: '页码' }),
   limit: z.coerce.number().optional().openapi({ description: '每页数量' }),
   orderBy: z.enum(['asc', 'desc']).optional().openapi({ description: '排序方式' }),
+  tag: z.string().optional().openapi({ description: '标签过滤' }),
+  category: z.string().optional().openapi({ description: '分类过滤' }),
 });
 
 /**
@@ -64,6 +76,8 @@ export const postPaginateRequestQuerySchema = z.object({
  */
 export const postPageNumbersRequestQuerySchema = z.object({
   limit: z.coerce.number().optional().openapi({ description: '每页数量' }),
+  tag: z.string().optional().openapi({ description: '标签过滤' }),
+  category: z.string().optional().openapi({ description: '分类过滤' }),
 });
 
 /**
@@ -127,6 +141,8 @@ export const getPostItemRequestSchema = (
         .nullable()
         .optional()
         .openapi({ description: '文章摘要' }),
+      tags: tagListSchema.optional().openapi({ description: '关联标签列表' }),
+      categoryId: z.string().optional().openapi({ description: '关联分类ID' }),
       keywords: z
         .string()
         .max(200, {

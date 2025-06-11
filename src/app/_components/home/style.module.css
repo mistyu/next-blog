@@ -1,0 +1,3 @@
+.home {
+  @apply tw-w-full tw-flex-auto tw-pt-20 tw-h-auto tw-flex tw-flex-col tw-items-center tw-space-y-3;
+}

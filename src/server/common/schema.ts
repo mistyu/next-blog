@@ -1,5 +1,8 @@
 import { z } from 'zod';
-import 'zod-openapi/extend';
+import { extendZodWithOpenApi } from 'zod-openapi';
+
+extendZodWithOpenApi(z);
+
 export const errorSchema = z
   .object({
     code: z.number().optional().openapi({ type: 'number' }),

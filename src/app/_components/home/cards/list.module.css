@@ -1,0 +1,58 @@
+.container {
+  @apply tw-flex tw-flex-col tw-w-full tw-h-full;
+}
+
+.title {
+  @apply tw-flex tw-items-center tw-justify-center sm:tw-mb-7 md:tw-mb-0 tw-flex-none tw-py-5 tw-mb-4 tw-text-[2rem];
+}
+
+.content {
+  @apply tw-flex 
+        tw-flex-col 
+        tw-items-center 
+        tw-flex-1
+        tw-text-base 
+        tw-text-center 
+        tw-leading-8;
+
+  & > ul {
+    @apply tw-list-none tw-max-w-full tw-block;
+
+    & > li {
+      @apply tw-py-1
+                tw-w-full
+                tw-flex
+                tw-justify-start
+                tw-items-center
+                tw-transition-transform
+                hover:tw-translate-x-5
+                hover:before:tw-bg-foreground;
+
+      &::before {
+        @apply tw-size-4 tw-text-muted-foreground tw-mr-[0.35rem] tw-content-[''] tw-bg-muted-foreground;
+        mask-image: url('./left.svg');
+        mask-repeat: no-repeat;
+        mask-position: 50% 50%;
+        mask-size: cover;
+      }
+
+      & > a {
+        @apply tw-max-w-[99%]
+                    tw-overflow-hidden 
+                    tw-whitespace-nowrap 
+                    tw-text-ellipsis 
+                    tw-break-all
+                    tw-text-muted-foreground
+                    hover:tw-text-foreground;
+      }
+    }
+  }
+
+  & > .cardBtn {
+    @apply tw-my-5;
+
+    & > a {
+      @apply tw-h-[2.7rem] tw-min-h-[2.7rem] tw-rounded-[0.3rem];
+    }
+  }
+}

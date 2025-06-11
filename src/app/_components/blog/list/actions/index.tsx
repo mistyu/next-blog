@@ -15,7 +15,7 @@ import { PostEditButton } from './edit-button';
 
 export const Buttons: FC<{ item: PostItem; className?: string }> = ({ item, className }) => {
   const auth = useAuth();
-  if (isNil(auth)) return null;
+  if (isNil(auth) || auth.id !== item.author.id) return null;
   return (
     <div className={cn('tw-flex tw-items-end tw-space-x-1', className)}>
       <PostEditButton item={item} />

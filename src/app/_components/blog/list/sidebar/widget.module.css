@@ -1,0 +1,23 @@
+.widget {
+  @apply tw-flex tw-w-full tw-flex-col tw-p-2;
+}
+
+.title {
+  @apply tw-w-full tw-py-2 tw-flex tw-space-x-1 tw-items-center;
+}
+
+.content {
+  @apply tw-w-full tw-p-2 tw-max-h-[12rem] tw-overflow-auto;
+}
+
+.mobileWidget {
+  .mobileItem {
+    @apply tw-py-0 tw-border-none;
+
+    & > h3 {
+      & > button {
+        @apply tw-py-0;
+      }
+    }
+  }
+}

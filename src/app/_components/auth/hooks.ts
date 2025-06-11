@@ -64,6 +64,7 @@ export const useAuthCheck = () => {
           setChecked(true);
         } catch (error) {
           toast({
+            variant: 'destructive',
             title: '网络连接错误',
             description: `${(error as Error).message}, 请尝试刷新页面`,
           });

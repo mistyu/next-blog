@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks-extra/prefer-use-state-lazy-initialization */
 'use client';
 
 import type { ChangeEventHandler, MouseEventHandler } from 'react';
@@ -5,13 +6,20 @@ import type { ChangeEventHandler, MouseEventHandler } from 'react';
 import { isNil, trim } from 'lodash';
 import Link from 'next/link';
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import { useDeepCompareEffect } from 'react-use';
 
+import type { CategoryItem } from '@/server/category/type';
+import type { TagItem } from '@/server/tag/type';
+
+import { categoryApi } from '@/api/category';
+import { tagApi } from '@/api/tag';
 import { generateLowerString } from '@/libs/utils';
 
 import type { PostActionFormProps, PostActionFormRef } from '../types';
 
 import { Details } from '../../collapsible/details';
 import { MdxEditor } from '../../mdx/editor';
+import { useToast } from '../../shadcn/hooks/use-toast';
 import {
   Form,
   FormControl,
@@ -23,8 +31,12 @@ import {
 } from '../../shadcn/ui/form';
 import { Input } from '../../shadcn/ui/input';
 import { Textarea } from '../../shadcn/ui/textarea';
+import { CategorySelect } from './category-select';
 import { usePostActionForm, usePostFormSubmitHandler } from './hooks';
+import { TagInput } from './tag';
 export const PostActionForm = forwardRef<PostActionFormRef, PostActionFormProps>((props, ref) => {
+  const { toast } = useToast();
+
   /**
    * 表单处理
    */
@@ -82,6 +94,60 @@ export const PostActionForm = forwardRef<PostActionFormRef, PostActionFormProps>
   }, [slug]);
 
   /**
+   * 文章分类
+   */
+  const [allCategories, setAllCategories] = useState<CategoryItem[]>([]);
+  const [categoryId, setCategoryId] = useState<string>(
+    props.type === 'create' || isNil(props.item.category) ? '' : props.item.category.id,
+  );
+
+  useEffect(() => {
+    form.setValue('categoryId', categoryId);
+  }, [categoryId]);
+  useEffect(() => {
+    (async () => {
+      const result = await categoryApi.list();
+      if (!result.ok) {
+        toast({
+          variant: 'destructive',
+          title: '读取分类列表失败,请刷新',
+          description: (await result.json()).message,
+        });
+      } else {
+        const data = await result.json();
+        setAllCategories(data);
+      }
+    })();
+  }, []);
+
+  /**
+   * 文章标签
+   */
+  const [allTags, setAllTags] = useState<TagItem[]>([]);
+  const [activeTagIndex, setActiveTagIndex] = useState<number | null>(null);
+  const [tags, setTags] = useState<TagItem[]>(props.type === 'create' ? [] : props.item.tags);
+
+  useEffect(() => {
+    (async () => {
+      const result = await tagApi.list();
+      if (!result.ok) {
+        toast({
+          variant: 'destructive',
+          title: '读取标签列表失败,请刷新',
+          description: (await result.json()).message,
+        });
+      } else {
+        const data = await result.json();
+        setAllTags(data);
+      }
+    })();
+  }, []);
+
+  useDeepCompareEffect(() => {
+    form.setValue('tags', tags);
+  }, [tags]);
+
+  /**
    * 表单渲染
    */
   return (
@@ -136,7 +202,55 @@ export const PostActionForm = forwardRef<PostActionFormRef, PostActionFormProps>
             )}
           />
         </div>
-
+        <FormField
+          control={form.control}
+          name="categoryId"
+          render={({ field }) => (
+            <FormItem className="tw-mt-2 tw-border-b tw-border-dashed tw-pb-1">
+              <div className="tw-w-full tw-flex-col tw-space-y-2">
+                <FormLabel className="tw-block">分类选择</FormLabel>
+                <FormControl className="tw-block tw-pt-1">
+                  <CategorySelect
+                    {...field}
+                    value={categoryId}
+                    setValue={setCategoryId}
+                    categories={allCategories}
+                  />
+                </FormControl>
+              </div>
+              <FormDescription>
+                选择一个分类后,在读取该分类的父分类(如果有)时,列表中也会包含此文章
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="tags"
+          render={({ field }) => (
+            <FormItem className="tw-mt-2 tw-border-b tw-border-dashed tw-pb-1">
+              <FormLabel>标签</FormLabel>
+              <FormControl>
+                <TagInput
+                  {...field}
+                  placeholder="输入标签"
+                  tags={tags}
+                  setTags={(newTags) => setTags(newTags)}
+                  className="tw-w-full"
+                  activeTagIndex={activeTagIndex}
+                  setActiveTagIndex={setActiveTagIndex}
+                  autocompleteOptions={allTags}
+                />
+              </FormControl>
+              <FormDescription>
+                每个标签之间请用英文逗号(,)分割,
+                如果单独不设置SEO关键字则会根据标签生成关键字用于SEO
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="summary"

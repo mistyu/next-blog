@@ -30,6 +30,7 @@ const getHeadersWithAccessToken = (
 };
 
 /**
+/**
  * 在服务端组件中创建hono api客户端
  */
 export const buildClient = <T extends Hono<any, any, any>>(route?: string) =>

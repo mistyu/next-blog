@@ -1,5 +1,7 @@
 import { z } from 'zod';
-import 'zod-openapi/extend';
+import { extendZodWithOpenApi } from 'zod-openapi';
+
+extendZodWithOpenApi(z);
 
 /**
  * 登录请求数据结构

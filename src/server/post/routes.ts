@@ -199,7 +199,10 @@ export const postRoutes = app
 
         const author = (c.req as any).user as AuthItem;
         if (isNil(author)) return c.json(createErrorResult('用户未认证'), 401);
-        const result = await createPostItem(validated.data);
+        const result = await createPostItem({
+          ...validated.data,
+          authorId: author.id,
+        });
         return c.json(result, 201);
       } catch (error) {
         return c.json(createErrorResult('创建文章失败', error), 500);

@@ -1,0 +1,12 @@
+.colorTitle {
+  @apply tw-bg-clip-text 
+        tw-text-transparent 
+         tw-font-bold 
+         tw-bg-gradient-to-r
+       tw-from-emerald-400/80
+        tw-via-lime-600/60
+        tw-to-amber-700/80
+       dark:tw-from-emerald-500/80
+        dark:tw-via-lime-400/60
+        dark:tw-to-lime-600/80;
+}

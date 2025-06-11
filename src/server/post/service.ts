@@ -1,31 +1,83 @@
 'use server';
 
-import type { Prisma } from '@prisma/client';
+import type { Category, Prisma } from '@prisma/client';
 
-import { isNil } from 'lodash';
+import { isNil, omit } from 'lodash';
 
 import type { PaginateOptions } from '@/libs/db/types';
 
 import db from '@/libs/db/client';
 import { paginateTransform } from '@/libs/db/utils';
 import { getRandomInt } from '@/libs/random';
+import { deepMerge } from '@/libs/utils';
 
-type PostCreateInput = Omit<Prisma.PostCreateInput, 'thumb'>;
-type PostUpdateInput = Omit<Prisma.PostUpdateInput, 'thumb'>;
+import type { TagItem } from '../tag/type';
+
+type PostCreateInput = Omit<Prisma.PostCreateInput, 'thumb' | 'tags' | 'category' | 'author'> & {
+  tags?: TagItem[];
+  categoryId?: string;
+  authorId: string;
+};
+type PostUpdateInput = Omit<Prisma.PostUpdateInput, 'thumb' | 'tags' | 'category'> & {
+  tags?: TagItem[];
+  categoryId?: string;
+};
+
+/**
+ * 默认的查询文章选项
+ */
+const defaultPostItemQueryOptions = {
+  omit: {
+    authorId: true,
+    categoryId: true,
+  },
+  include: {
+    author: {
+      omit: { password: true },
+    },
+    tags: true,
+    category: true,
+  },
+} as const;
 
 /**
  * 默认的查询文章列表选项
  */
-const defaultPostPaginateOptions = { body: true };
+const defaultPostPaginateOptions = deepMerge(defaultPostItemQueryOptions, {
+  omit: { body: true },
+});
+
+export type PostPaginateOptions = PaginateOptions & {
+  /**
+   * 标签
+   */
+  tag?: string;
+  /**
+   * 分类的ID或者slug
+   */
+  category?: string;
+};
 
 /**
  * 查询分页文章列表信息
  * @param options
  */
-export const queryPostPaginate = async (options: PaginateOptions = {}) => {
-  const { ...rest } = options;
+export const queryPostPaginate = async (options: PostPaginateOptions = {}) => {
+  const { tag, category, ...rest } = options;
   const where: Prisma.PostWhereInput = {};
-
+  if (!isNil(tag)) {
+    where.tags = {
+      some: {
+        text: decodeURIComponent(tag),
+      },
+    };
+  }
+  if (!isNil(category)) {
+    const categories = await db.category.getDescendantsWithCurrent({
+      where: { OR: [{ id: category }, { slug: category }] },
+    });
+    where.categoryId = { in: categories.map((item) => item.id) };
+  }
   const data = await db.post.paginate({
     orderBy: [{ updatedAt: 'desc' }, { createdAt: 'desc' }],
     page: 1,
@@ -34,7 +86,18 @@ export const queryPostPaginate = async (options: PaginateOptions = {}) => {
     ...defaultPostPaginateOptions,
     ...rest,
   });
-
+  for (let index = 0; index < data.result.length; index++) {
+    (data.result[index] as (typeof data.result extends (infer ItemType)[] ? ItemType : never) & {
+      categories: Category[];
+    }) = {
+      ...data.result[index],
+      categories: !isNil(data.result[index].category?.id)
+        ? await db.category.getAncestorsWithCurrent({
+            where: { id: data.result[index].category?.id },
+          })
+        : [],
+    };
+  }
   return paginateTransform(data);
 };
 
@@ -62,8 +125,18 @@ export const queryPostItem = async (arg: string) => {
         },
       ],
     },
+    ...defaultPostItemQueryOptions,
   });
-  if (!isNil(item)) return item;
+  if (!isNil(item)) {
+    return {
+      ...item,
+      categories: !isNil(item.category?.id)
+        ? await db.category.getAncestorsWithCurrent({
+            where: { id: item.category?.id },
+          })
+        : [],
+    };
+  }
   return item;
 };
 
@@ -74,9 +147,17 @@ export const queryPostItem = async (arg: string) => {
 export const queryPostItemBySlug = async (slug: string) => {
   const item = await db.post.findUnique({
     where: { slug },
+    ...defaultPostItemQueryOptions,
   });
   if (!isNil(item)) {
-    return item;
+    return {
+      ...item,
+      categories: !isNil(item.category?.id)
+        ? await db.category.getAncestorsWithCurrent({
+            where: { id: item.category?.id },
+          })
+        : [],
+    };
   }
   return item;
 };
@@ -88,9 +169,17 @@ export const queryPostItemBySlug = async (slug: string) => {
 export const queryPostItemById = async (id: string) => {
   const item = await db.post.findUnique({
     where: { id },
+    ...defaultPostItemQueryOptions,
   });
   if (!isNil(item)) {
-    return item;
+    return {
+      ...item,
+      categories: !isNil(item.category?.id)
+        ? await db.category.getAncestorsWithCurrent({
+            where: { id: item.category?.id },
+          })
+        : [],
+    };
   }
   return item;
 };
@@ -101,10 +190,23 @@ export const queryPostItemById = async (id: string) => {
  */
 export const createPostItem = async (data: PostCreateInput) => {
   const createData: Prisma.PostCreateInput = {
-    ...data,
+    ...omit(data, ['tags', 'categoryId', 'authorId']),
     thumb: `/uploads/thumb/post-${getRandomInt(1, 8)}.png`,
+    author: { connect: { id: data.authorId } },
   };
-
+  if (!isNil(data.tags)) {
+    createData.tags = {
+      connectOrCreate: data.tags.map(({ id, text }) => ({
+        where: { id },
+        create: { text },
+      })),
+    };
+  }
+  if (!isNil(data.categoryId)) {
+    createData.category = {
+      connect: { id: data.categoryId },
+    };
+  }
   const item = await db.post.create({
     data: createData,
   });
@@ -118,7 +220,21 @@ export const createPostItem = async (data: PostCreateInput) => {
  * @param data
  */
 export const updatePostItem = async (id: string, data: PostUpdateInput) => {
-  const updateData: Prisma.PostUpdateInput = data;
+  const updateData: Prisma.PostUpdateInput = { ...omit(data, ['tags', 'categoryId']) };
+  if (!isNil(data.tags)) {
+    updateData.tags = {
+      set: [], // 先清除所有现有关联
+      connectOrCreate: data.tags.map(({ id, text }) => ({
+        where: { id },
+        create: { text },
+      })),
+    };
+  }
+  if (!isNil(data.categoryId)) {
+    updateData.category = {
+      connect: { id: data.categoryId },
+    };
+  }
   const item = await db.post.update({
     where: { id },
     data: updateData,

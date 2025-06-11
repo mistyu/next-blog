@@ -18,7 +18,7 @@ export const ApiDocButton: FC = () => (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button className="tw-ml-auto tw-size-9 tw-justify-end" variant="outline" asChild>
+          <Button className="tw-ml-auto tw-size-9 tw-justify-center" variant="outline" asChild>
             <Link href={`${appConfig.baseUrl}${appConfig.apiPath}/docs`} target="_blank">
               <Webhook />
             </Link>

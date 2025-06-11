@@ -62,6 +62,14 @@
             @apply tw-text-base tw-font-bold;
           }
         }
+
+        & > .categories {
+          @apply tw-flex tw-flex-wrap tw-items-center;
+
+          & > a {
+            @apply tw-text-sm tw-mr-1 tw-items-center tw-inline-flex tw-pt-1;
+          }
+        }
       }
 
       & > .summary {

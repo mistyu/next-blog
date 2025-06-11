@@ -3,8 +3,12 @@ import type { FC } from 'react';
 import { postApi } from '@/api/post';
 import { SimplePaginate } from '@/app/_components/paginate/simple';
 
-export const PostListPaginate: FC<{ limit: number; page: number }> = async ({ limit, page }) => {
-  const result = await postApi.pageNumbers({ limit });
+export const PostListPaginate: FC<{ limit: number; page: number; tag?: string }> = async ({
+  limit,
+  page,
+  tag,
+}) => {
+  const result = await postApi.pageNumbers({ limit, tag });
   if (!result.ok) return null;
   const { result: totalPages } = await result.json();
   return (

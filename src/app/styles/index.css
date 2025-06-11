@@ -1,5 +1,7 @@
+@import './fonts/fira-code.css';
+@import './fonts/lxgwwenkai-regular.css';
+@import './fonts/lxgwwenkaimono-regular.css';
 @import 'tailwindcss/base';
-@import './font.css';
 @import './vars.css';
 @import './tailwind/base.css';
 @import 'tailwindcss/components';

@@ -1,0 +1,12 @@
+.container {
+  @apply tw-w-full lg:tw-shadow-nylg md:tw-shadow-nymd tw-shadow-nysm tw-rounded-md  !tw-bg-transparent dark:tw-shadow-white/20;
+
+  & * {
+    @apply !tw-rounded-md;
+  }
+
+  & > :global(.art-video-player),
+  & video {
+    @apply !tw-bg-transparent;
+  }
+}

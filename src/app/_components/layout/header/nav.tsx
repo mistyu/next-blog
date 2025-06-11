@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { House } from 'lucide-react';
+import { House, PlaneTakeoff } from 'lucide-react';
 import Link from 'next/link';
 
 import { cn } from '@/app/_components/shadcn/utils';
@@ -20,6 +20,11 @@ const items = [
     href: '/',
     icon: House,
   },
+  {
+    title: '博客',
+    href: '/blog',
+    icon: PlaneTakeoff,
+  },
 ];
 export const HeaderNav: FC = () => (
   <div className={$styles.nav}>
@@ -27,10 +32,12 @@ export const HeaderNav: FC = () => (
       <NavigationMenuList>
         {items.map((item) => (
           <NavigationMenuItem key={item.href} className={cn($styles['menu-item'])}>
-            <NavigationMenuLink href={item.href} className={cn(navigationMenuTriggerStyle())}>
-              {item.icon && <item.icon className="tw-mr-1" />}
-              {item.title}
-            </NavigationMenuLink>
+            <Link href={item.href} passHref legacyBehavior>
+              <NavigationMenuLink className={cn(navigationMenuTriggerStyle())}>
+                {item.icon && <item.icon className="tw-mr-1" />}
+                {item.title}
+              </NavigationMenuLink>
+            </Link>
           </NavigationMenuItem>
         ))}
       </NavigationMenuList>

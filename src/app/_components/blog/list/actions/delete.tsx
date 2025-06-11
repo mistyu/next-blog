@@ -70,7 +70,7 @@ export const PostDelete: FC<{ item: PostItem }> = ({ item }) => {
     },
     [item.id],
   );
-  if (isNil(auth)) return null;
+  if (isNil(auth) || auth.id !== item.author.id) return null;
   return (
     <AlertDialog open={open} onOpenChange={changeOpen}>
       <AlertDialogTrigger asChild>

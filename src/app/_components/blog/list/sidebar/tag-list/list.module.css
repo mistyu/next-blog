@@ -1,0 +1,12 @@
+.container {
+  @apply tw-flex tw-flex-wrap tw-items-center;
+
+  & > a {
+    @apply tw-text-sm tw-text-muted-foreground tw-mr-2 tw-mb-2 tw-border tw-border-muted-foreground tw-rounded-[0.2rem] tw-px-2;
+
+    &.tagActived,
+    &:hover {
+      @apply tw-text-foreground tw-border-foreground;
+    }
+  }
+}

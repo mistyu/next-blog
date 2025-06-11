@@ -1,0 +1,41 @@
+.container {
+  @apply tw-relative;
+}
+
+.accordion {
+  @apply tw-relative tw-z-10;
+}
+
+.folderItem {
+  @apply tw-flex tw-items-center tw-rounded tw-transition-all tw-duration-200 tw-py-2 tw-px-1
+    tw-border-transparent hover:tw-bg-zinc-200/50 dark:hover:tw-bg-zinc-700/50;
+
+  &.active {
+    @apply tw-bg-zinc-200 dark:tw-bg-zinc-700;
+  }
+
+  & > .folderLink {
+    @apply tw-flex tw-w-full tw-cursor-pointer tw-items-center;
+
+    & .children {
+      @apply tw-ml-4 tw-border-l tw-border-zinc-200 dark:tw-border-zinc-700;
+    }
+
+    & > h3 > button {
+      @apply tw-py-0;
+    }
+  }
+}
+
+.item {
+  @apply tw-flex tw-items-center tw-py-2 tw-rounded tw-transition-all tw-duration-200 tw-px-1
+                tw-border-l-2 tw-border-transparent hover:tw-bg-zinc-200/50 dark:hover:tw-bg-zinc-700/50;
+
+  & > .itemLink {
+    @apply tw-flex tw-items-center tw-w-full tw-cursor-pointer;
+  }
+
+  &.active {
+    @apply tw-bg-zinc-200 dark:tw-bg-zinc-700 tw-border-l-2;
+  }
+}

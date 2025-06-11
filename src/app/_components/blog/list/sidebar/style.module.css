@@ -1,0 +1,3 @@
+.sidebar {
+  @apply tw-flex tw-w-full lg:tw-w-72 tw-flex-none tw-flex-col lg:tw-order-2 tw-order-1 tw-mb-6 lg:tw-mb-0;
+}

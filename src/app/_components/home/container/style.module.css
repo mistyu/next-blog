@@ -1,0 +1,11 @@
+.container {
+  @apply tw-flex tw-w-full tw-items-center tw-justify-center;
+
+  & > .main {
+    @apply tw-items-center tw-justify-between tw-flex tw-h-auto tw-w-full tw-flex-col lg:tw-flex-row tw-px-0 md:tw-px-3;
+
+    & > .block {
+      @apply tw-my-2 tw-flex tw-min-h-80 tw-w-full lg:tw-my-8;
+    }
+  }
+}

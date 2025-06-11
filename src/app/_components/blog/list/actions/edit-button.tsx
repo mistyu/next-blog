@@ -32,7 +32,7 @@ const Button: FC<{ id: string }> = ({ id }) => {
 
 export const PostEditButton: FC<{ item: PostItem }> = ({ item }) => {
   const auth = useAuth();
-  if (isNil(auth)) return null;
+  if (isNil(auth) || auth.id !== item.author.id) return null;
   return (
     <Suspense>
       <TooltipProvider>

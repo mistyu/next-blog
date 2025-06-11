@@ -50,7 +50,7 @@ const PaginationLink = ({ className, isActive, size = 'icon', ...props }: Pagina
         variant: isActive ? 'outline' : 'ghost',
         size,
       }),
-      cn({ 'tw-pointer-events-none tw-opacity-50': props.disabled }),
+      { 'tw-pointer-events-none tw-opacity-50': props.disabled },
       className,
     )}
     href={isNil(props.href) ? ':' : props.href}
