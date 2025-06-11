@@ -1,14 +1,12 @@
 {
     // 全局包管理器
     "npm.packageManager": "pnpm",
-
     // 文件识别
     "files.associations": {
         "*.css": "postcss",
         "*.md": "markdown",
         "*.mdx": "mdx"
     },
-
     // 保存时自动格式化
     "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
@@ -16,7 +14,6 @@
         "source.fixAll.stylelint": "explicit",
         "source.fixAll.markdownlint": "explicit"
     },
-
     // TS和React
     "typescript.suggest.enabled": true,
     "javascript.suggest.enabled": true,
@@ -39,7 +36,6 @@
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
-
     // 静态文件格式化
     "[html]": {
         "editor.formatOnSave": true,
@@ -65,7 +61,6 @@
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-
     // CSS
     "[css]": {
         "editor.defaultFormatter": "stylelint.vscode-stylelint"
@@ -79,9 +74,18 @@
     "tailwindCSS.validate": false,
     "stylelint.enable": true,
     "stylelint.packageManager": "pnpm",
-    "stylelint.snippet": ["css", "scss", "less", "postcss"],
-    "stylelint.validate": ["css", "scss", "less", "postcss"],
-
+    "stylelint.snippet": [
+        "css",
+        "scss",
+        "less",
+        "postcss"
+    ],
+    "stylelint.validate": [
+        "css",
+        "scss",
+        "less",
+        "postcss"
+    ],
     // Copilot提示与vscode代码提示的冲突解决
     // 确保默认补全提供程序都启用
     "editor.inlineSuggest.enabled": true, // 启用内联建议(Copilot)
